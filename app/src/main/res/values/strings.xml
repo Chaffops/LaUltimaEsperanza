@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">The Last Chance</string>
+
+    <string name="botonEmpezar">Jugar</string>
+    <string name="botonScoreBoard">Score board</string>
+    <string name="botonTienda">Tienda</string>
+
+    <string name="labelAjustes">Ajustes</string>
+    <string name="labelDificultad">Dificultad</string>
+    <string name="labelVolumen">Volumen</string>
+    <string name="labelIdioma">Idioma</string>
+    <string name="labelTema">Tema</string>
+    <string name="textoTema">Oscuro</string>
+    <string name="textoTemaClaro">Claro</string>
+
+
+    <string name="labelFacil">Facil</string>
+    <string name="labelNormal">Normal</string>
+    <string name="labelDificil">Dificil</string>
+
+    <string name="descriptorBotonAjustes">Volver a la pantalla de inicio</string>
+
+    <string name="descriptorBotonEmpezar">Empezar Juego</string>
+
+
+</resources>
