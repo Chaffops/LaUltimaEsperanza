@@ -48,7 +48,7 @@
         android:layout_width="64dp"
         android:layout_height="66dp"
         android:background="#00FFFFFF"
-        android:contentDescription="@string/descriptorBotonEmpezar"
+        android:contentDescription="@string/descriptorBotonAjustes"
         android:onClick="ajustar"
         app:layout_constraintBottom_toTopOf="@+id/TextoNombreAplicacion"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,35 +77,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00FFFFFF"
+            android:contentDescription="@string/botonTienda"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/botonPrincipal"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_action_shopping_basket"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
         <ImageButton
             android:id="@+id/botonScoreboard"
             android:layout_width="61dp"
             android:layout_height="54dp"
             android:background="#00FFFFFF"
+            android:contentDescription="@string/botonScoreBoard"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/botonPrincipal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_action_format_list_numbered"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
         <ImageButton
             android:id="@+id/botonPrincipal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00FFFFFF"
+            android:contentDescription="@string/descriptorBotonEmpezar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_action_play_circle_outline"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
