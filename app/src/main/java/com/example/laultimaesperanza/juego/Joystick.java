@@ -1,4 +1,4 @@
-package com.example.laultimaesperanza;
+package com.example.laultimaesperanza.juego;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;

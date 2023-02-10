@@ -4,8 +4,8 @@ import android.content.Context;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.laultimaesperanza.Joystick;
-import com.example.laultimaesperanza.MotorGrafico;
+import com.example.laultimaesperanza.juego.Joystick;
+import com.example.laultimaesperanza.juego.MotorGrafico;
 import com.example.laultimaesperanza.R;
 
 

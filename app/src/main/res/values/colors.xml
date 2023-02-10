@@ -8,6 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="ColorBtnEmpezar">#f5506357</color>
+    <color name="ColorBordes">#212121</color>
+
+    <color name="ColorBtnEmpezarPressionado">#F56A8574</color>
+    <color name="ColorBordesPressionado">#3E3E3E</color>
+
     <color name="letras">#212121</color>
 
     <color name="jugador">#00FFFF</color>

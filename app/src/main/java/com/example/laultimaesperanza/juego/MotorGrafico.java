@@ -1,6 +1,8 @@
-package com.example.laultimaesperanza;
+package com.example.laultimaesperanza.juego;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
+
+import com.example.laultimaesperanza.juego.Juego;
 
 public class MotorGrafico extends Thread {
     public static final double MAX_APS = 60.0;

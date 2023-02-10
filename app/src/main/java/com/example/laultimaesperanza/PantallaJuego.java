@@ -3,9 +3,10 @@ package com.example.laultimaesperanza;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.example.laultimaesperanza.juego.Juego;
 
 public class PantallaJuego extends AppCompatActivity {
 
