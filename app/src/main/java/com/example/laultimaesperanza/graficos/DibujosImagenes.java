@@ -6,31 +6,41 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
 import com.example.laultimaesperanza.R;
+import com.example.laultimaesperanza.mapa.DibujoSuelo;
 
 public class DibujosImagenes {
 
     private Bitmap bitmap;
 
-    public DibujosImagenes(Context context){
-        BitmapFactory.Options bitmapOpciones =new BitmapFactory.Options();
-        bitmapOpciones.inScaled=false;
-        bitmap= BitmapFactory.decodeResource(context.getResources(), R.drawable.plantilla, bitmapOpciones);
+    public DibujosImagenes(Context context) {
+        BitmapFactory.Options bitmapOpciones = new BitmapFactory.Options();
+        bitmapOpciones.inScaled = false;
+        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.plantilla, bitmapOpciones);
     }
 
     //interesante para la exposicion.
 
-    public Dibujos[] getTodosDibujos(){
-            Dibujos[] dibujitos=new Dibujos[13];
-            for(int x=0,y=0; x<dibujitos.length;x++){
+    public Dibujos[] getTodosDibujos() {
+        Dibujos[] dibujitos = new Dibujos[13];
+        for (int x = 0, y = 0; x < dibujitos.length; x++) {
 
-                y=((x%5)==0 && x>0)?y+1:y;
+            y = ((x % 5) == 0 && x > 0) ? y + 1 : y;
 
-                dibujitos[x]=new Dibujos(this,new Rect(x*64,y*64,(x+1)*64,(y+1)*64));
-            }
+            dibujitos[x] = new Dibujos(this, new Rect(x * 64, y * 64, (x + 1) * 64, (y + 1) * 64));
+        }
         return dibujitos;
     }
 
     public Bitmap getBitmap() {
         return bitmap;
     }
+
+    public Dibujos getSueloImagen(int x, int y) {
+        return getDibujoPorIndex(x, y);
+    }
+
+    private Dibujos getDibujoPorIndex(int x, int y) {
+        return new Dibujos(this, new Rect(x * 64, y * 64, (x + 1) * 64, (y + 1) * 64));
+    }
+
 }

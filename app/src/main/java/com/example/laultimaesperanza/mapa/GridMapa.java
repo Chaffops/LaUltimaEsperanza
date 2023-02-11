@@ -1,6 +1,6 @@
 package com.example.laultimaesperanza.mapa;
 
-public class CreacionMapa {
+public class GridMapa {
 
     public static final int ANCHO_IMAGEN = 64;
     public static final int ALTO_IMAGEN = 64;
@@ -13,7 +13,7 @@ public class CreacionMapa {
 
     private int[][] mapa;
 
-    public CreacionMapa() {
+    public GridMapa() {
         mapa = new int[FILAS][COLUMNAS];
         iniciarMapa();
 

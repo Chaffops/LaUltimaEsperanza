@@ -1,9 +1,13 @@
 package com.example.laultimaesperanza.juego;
 
+import android.graphics.Rect;
+
 import com.example.laultimaesperanza.entidades.ObjetoJugable;
 
 public class Disposicion {
 
+    public final Rect DISPOSICION_RECT;
+    private int wPixel,hPixel;
     private double centrarDisposicionX;
     private double centrarDisposicionY;
     private double disposicionCentralX;
@@ -15,6 +19,11 @@ public class Disposicion {
 
     public Disposicion( int wPixel, int hPixel, ObjetoJugable objetoCentral) {
         this.objetoCentral = objetoCentral;
+        this.wPixel=wPixel;
+        this.hPixel=hPixel;
+
+        DISPOSICION_RECT=new Rect(0,0,wPixel,hPixel);
+
 
         disposicionCentralX = wPixel/2.0;
         disposicionCentralY = hPixel/2.0;
@@ -39,5 +48,9 @@ public class Disposicion {
 
     public double disposicionJuegoY(double y) {
         return y + centrarDisposicionY;
+    }
+
+    public Rect getDisposicionJuego() {
+        return new Rect((int) (centrarX-wPixel/2), (int) (centrarY-hPixel/2), (int) (centrarX+wPixel/2), (int) (centrarY+hPixel/2));
     }
 }

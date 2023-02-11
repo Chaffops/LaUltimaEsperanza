@@ -18,6 +18,7 @@ import com.example.laultimaesperanza.entidades.Jugador;
 import com.example.laultimaesperanza.entidades.Zombi;
 import com.example.laultimaesperanza.graficos.Animacion;
 import com.example.laultimaesperanza.graficos.DibujosImagenes;
+import com.example.laultimaesperanza.mapa.Mapa;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,6 +27,7 @@ import java.util.List;
 public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
     private final DibujosImagenes dibujosImagenes;
+    private final Mapa mapa;
     private Jugador jugador;
     private Joystick joystick;
     MotorGrafico mGrafico;
@@ -49,7 +51,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         dibujosImagenes=new DibujosImagenes(context);
 
-        joystick = new Joystick(250, 500, 70, 40);
+        joystick = new Joystick(250, 500, 100, 60);
 
         Animacion animacion=new Animacion(dibujosImagenes.getTodosDibujos());
         jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion);
@@ -59,6 +61,8 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         disposicion=new Disposicion(displayMetrics.widthPixels,displayMetrics.heightPixels,jugador);
+
+        mapa=new Mapa(dibujosImagenes);
 
         setFocusable(true);
     }
@@ -122,6 +126,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        mapa.dibujar(canvas,disposicion);
 
         joystick.dibujar(canvas);
         jugador.dibujar(canvas ,disposicion);
