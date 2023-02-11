@@ -51,7 +51,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         dibujosImagenes=new DibujosImagenes(context);
 
-        joystick = new Joystick(250, 500, 100, 60);
+        joystick = new Joystick(250, 500, 150, 100);
 
         Animacion animacion=new Animacion(dibujosImagenes.getTodosDibujos());
         jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion);

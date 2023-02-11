@@ -12,7 +12,7 @@ public class Zombi extends Entidad {
 
     public static final double VELZOMBI = Jugador.VELJUGADOR * 0.6;
     public static final double VELMAX = VELZOMBI / MotorGrafico.MAX_APS;
-    private static double aparicionesMinuto = 20;
+    private static double aparicionesMinuto = 60;
     private static double aparicionesSegundo = aparicionesMinuto / 60.0;
     private static double actualizacionPorAparicion = MotorGrafico.MAX_APS / aparicionesSegundo;
 
@@ -27,8 +27,10 @@ public class Zombi extends Entidad {
 
     }
 
+
+
     public Zombi(Context context, Jugador j) {
-        super(context,ContextCompat.getColor(context, R.color.zombi),Math.random() * 1000,Math.random() * 1000,30);
+        super(context,ContextCompat.getColor(context, R.color.zombi),Math.random() * 2000,Math.random() * 2000,30);
         this.jugador = j;
     }
 
