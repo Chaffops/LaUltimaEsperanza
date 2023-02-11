@@ -2,6 +2,8 @@ package com.example.laultimaesperanza.entidades;
 
 import android.graphics.Canvas;
 
+import com.example.laultimaesperanza.juego.Disposicion;
+
 public abstract class ObjetoJugable {
     protected double posX;
     protected double posY;
@@ -19,15 +21,15 @@ public abstract class ObjetoJugable {
     }
 
 
-    public abstract void dibujar(Canvas canvas);
+    public abstract void dibujar(Canvas canvas , Disposicion disposicion);
 
     public abstract void actualizar();
 
-    protected double getPosicionX() {
+    public double getPosicionX() {
         return posX;
     }
 
-    protected double getPosicionY() {
+    public double getPosicionY() {
         return posY;
     }
 

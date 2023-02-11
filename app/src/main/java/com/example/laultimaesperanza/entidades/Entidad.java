@@ -3,6 +3,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.example.laultimaesperanza.juego.Disposicion;
+
 public abstract class Entidad extends ObjetoJugable {
 
     protected double radio;
@@ -32,7 +34,7 @@ public abstract class Entidad extends ObjetoJugable {
         return radio;
     }
 
-    public void dibujar(Canvas lienzo) {
-        lienzo.drawCircle((float) posX, (float) posY, (float) radio, color);
+    public void dibujar(Canvas lienzo, Disposicion disposicion) {
+        lienzo.drawCircle((float) disposicion.gameToDisplayCoordinatesX(posX),(float) disposicion.gameToDisplayCoordinatesY(posY),(float) radio, color);
     }
 }

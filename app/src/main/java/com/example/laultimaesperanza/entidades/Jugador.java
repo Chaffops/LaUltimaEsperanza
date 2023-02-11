@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.laultimaesperanza.juego.Disposicion;
 import com.example.laultimaesperanza.juego.Joystick;
 import com.example.laultimaesperanza.juego.MotorGrafico;
 import com.example.laultimaesperanza.R;
@@ -47,9 +48,9 @@ public class Jugador extends Entidad {
     }
 
     @Override
-    public void dibujar(Canvas lienzo) {
-        super.dibujar(lienzo);
-        vida.dibujar(lienzo);
+    public void dibujar(Canvas lienzo, Disposicion disposicion) {
+        super.dibujar(lienzo,disposicion);
+        vida.dibujar(lienzo, disposicion);
     }
 
     public static int getPuntosVida() {

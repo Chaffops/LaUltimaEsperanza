@@ -1,9 +1,10 @@
 package com.example.laultimaesperanza.juego;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -32,6 +33,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     private int numeroBalasIniciales =0;
 
     PantallaJuego pt;
+    private Disposicion disposicion;
 
     public Juego(Context context,PantallaJuego pt) {
         super(context);
@@ -45,6 +47,12 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         joystick = new Joystick(250, 500, 70, 40);
         jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30);
+
+
+        DisplayMetrics displayMetrics=new DisplayMetrics();
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        disposicion=new Disposicion(displayMetrics.widthPixels,displayMetrics.heightPixels,jugador);
 
         setFocusable(true);
     }
@@ -110,12 +118,12 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
 
         joystick.dibujar(canvas);
-        jugador.dibujar(canvas);
+        jugador.dibujar(canvas ,disposicion);
         for (Zombi zombi : Zombis) {
-            zombi.dibujar(canvas);
+            zombi.dibujar(canvas,disposicion);
         }
         for (Bala bala : Balas) {
-            bala.dibujar(canvas);
+            bala.dibujar(canvas,disposicion);
         }
     }
 
@@ -168,6 +176,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
             }
         }
+        disposicion.actualizar();
     }
 
     public void parar() {

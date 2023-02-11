@@ -6,7 +6,7 @@
     <string name="botonTienda">Tienda</string>
 
     <string name="labelAjustes">Ajustes</string>
-    <string name="labelDificultad">Dificultad</string>
+    <string name="labelNombre">Nombre</string>
     <string name="labelVolumen">Volumen</string>
     <string name="labelIdioma">Idioma</string>
     <string name="labelTema">Tema</string>

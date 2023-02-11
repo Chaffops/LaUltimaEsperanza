@@ -5,8 +5,11 @@ import static com.example.laultimaesperanza.entidades.Jugador.getPuntosVida;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+
 import androidx.core.content.ContextCompat;
+
 import com.example.laultimaesperanza.R;
+import com.example.laultimaesperanza.juego.Disposicion;
 
 public class Vida {
 
@@ -30,7 +33,7 @@ public class Vida {
         vidaColor.setColor(healthColor);
     }
 
-    public void dibujar(Canvas canvas) {
+    public void dibujar(Canvas canvas, Disposicion disposicion) {
         float x = (float) jugador.getPosicionX();
         float y = (float) jugador.getPosicionY();
         float distanciaAlJugador = 40;
@@ -42,9 +45,14 @@ public class Vida {
         bordeDrc = x + w / 2;
         bordeAbajo = y - distanciaAlJugador;
         bordeArriba = bordeAbajo - h;
-        canvas.drawRect(bordeIzq, bordeArriba, bordeDrc, bordeAbajo, bordeColor);
+
+        canvas.drawRect((float) disposicion.gameToDisplayCoordinatesX(bordeIzq),
+                (float) disposicion.gameToDisplayCoordinatesY(bordeArriba),
+                (float) disposicion.gameToDisplayCoordinatesX(bordeDrc),
+                (float) disposicion.gameToDisplayCoordinatesY(bordeAbajo), bordeColor);
 
         float vidaIzq, vidaArriba, vidaDrc, vidaAbajo, vidaW, vidaH;
+
         vidaW = w - 2 * m;
         vidaH = h - 2 * m;
         vidaIzq = bordeIzq + m;
@@ -52,7 +60,12 @@ public class Vida {
         vidaAbajo = bordeAbajo - m;
         vidaArriba = bordeAbajo - vidaH;
 
-        canvas.drawRect(vidaIzq, vidaArriba, vidaDrc, vidaAbajo, vidaColor);
+        canvas.drawRect(
+                (float) disposicion.gameToDisplayCoordinatesX(vidaIzq),
+                (float) disposicion.gameToDisplayCoordinatesY(vidaArriba),
+                (float) disposicion.gameToDisplayCoordinatesX(vidaDrc),
+                (float) disposicion.gameToDisplayCoordinatesY(vidaAbajo),
+                vidaColor);
 
     }
 

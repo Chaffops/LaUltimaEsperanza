@@ -137,7 +137,7 @@
             android:id="@+id/textDificultad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/labelDificultad"
+            android:text="@string/labelNombre"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -146,43 +146,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.205" />
 
-        <RadioGroup
+        <EditText
+            android:id="@+id/textoNombre"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/labelNombre"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColorHint="#757575"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0">
-
-            <RadioButton
-                android:id="@+id/radioButton7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingEnd="25dp"
-                android:text="@string/labelFacil"
-                android:textSize="18sp" />
-
-            <RadioButton
-                android:id="@+id/radioButton8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingEnd="25dp"
-                android:text="@string/labelNormal"
-                android:textSize="18sp" />
-
-            <RadioButton
-                android:id="@+id/radioButton9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingEnd="25dp"
-                android:text="@string/labelDificil"
-                android:textSize="18sp" />
-        </RadioGroup>
+            app:layout_constraintTop_toBottomOf="@+id/textDificultad"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
