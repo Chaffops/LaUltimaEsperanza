@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.laultimaesperanza.graficos.Animacion;
+import com.example.laultimaesperanza.graficos.Dibujos;
 import com.example.laultimaesperanza.juego.Disposicion;
 import com.example.laultimaesperanza.juego.Joystick;
 import com.example.laultimaesperanza.juego.MotorGrafico;
@@ -20,13 +22,17 @@ public class Jugador extends Entidad {
     private final Vida vida;
 
     private Joystick joystick;
+    private Animacion animacion;
 
+    private EstadoJugador estadoJugador;
 
-    public Jugador(Context context, Joystick j, double x, double y, double r) {
+    public Jugador(Context context, Joystick j, double x, double y, double r, Animacion animacion) {
         super(context, ContextCompat.getColor(context, R.color.jugador), x, y, r);
         this.joystick = j;
-        this.vida=new Vida(context,this);
-        this.puntosVida=MAX_PUNTOS_VIDA;
+        this.vida = new Vida(context, this);
+        this.puntosVida = MAX_PUNTOS_VIDA;
+        this.animacion = animacion;
+        this.estadoJugador=new EstadoJugador(this);
     }
 
     public void actualizar() {
@@ -44,12 +50,14 @@ public class Jugador extends Entidad {
             dirY = velY / distance;
 
         }
+        estadoJugador.actualizar();
 
     }
 
     @Override
     public void dibujar(Canvas lienzo, Disposicion disposicion) {
-        super.dibujar(lienzo,disposicion);
+
+        animacion.dibujar(lienzo,disposicion,this);
         vida.dibujar(lienzo, disposicion);
     }
 
@@ -58,9 +66,17 @@ public class Jugador extends Entidad {
     }
 
     public void setPuntosVida(int puntosVida) {
-        if (puntosVida >=0){
+        if (puntosVida >= 0) {
             this.puntosVida = puntosVida;
         }
 
+    }
+
+    public EstadoJugador getEstadoJugador() {
+        return estadoJugador;
+    }
+
+    public void setEstadoJugador(EstadoJugador estadoJugador) {
+        this.estadoJugador = estadoJugador;
     }
 }

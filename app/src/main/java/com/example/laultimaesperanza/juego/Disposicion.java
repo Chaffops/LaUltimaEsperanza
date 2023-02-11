@@ -4,40 +4,40 @@ import com.example.laultimaesperanza.entidades.ObjetoJugable;
 
 public class Disposicion {
 
-    private double gameToDisplayCoordinateOffsetX;
-    private double gameToDisplayCoordinateOffsetY;
-    private double displayCenterX;
-    private double gameCenterX;
-    private double displayCenterY;
-    private double gameCenterY;
+    private double centrarDisposicionX;
+    private double centrarDisposicionY;
+    private double disposicionCentralX;
+    private double centrarX;
+    private double disposicionCentralY;
+    private double centrarY;
     private ObjetoJugable objetoCentral;
 
 
     public Disposicion( int wPixel, int hPixel, ObjetoJugable objetoCentral) {
         this.objetoCentral = objetoCentral;
 
-        displayCenterX= wPixel/2.0;
-        displayCenterY= hPixel/2.0;
+        disposicionCentralX = wPixel/2.0;
+        disposicionCentralY = hPixel/2.0;
 
     }
 
     public void actualizar(){
 
-        gameCenterX = objetoCentral.getPosicionX();
-        gameCenterY = objetoCentral.getPosicionY();
+        centrarX = objetoCentral.getPosicionX();
+        centrarY = objetoCentral.getPosicionY();
 
 
-        gameToDisplayCoordinateOffsetX=displayCenterX - gameCenterX;
-        gameToDisplayCoordinateOffsetY=displayCenterY - gameCenterY;
+        centrarDisposicionX = disposicionCentralX - centrarX;
+        centrarDisposicionY = disposicionCentralY - centrarY;
 
     }
 
 
-    public double gameToDisplayCoordinatesX(double x) {
-        return x + gameToDisplayCoordinateOffsetX;
+    public double disposicionJuegoX(double x) {
+        return x + centrarDisposicionX;
     }
 
-    public double gameToDisplayCoordinatesY(double y) {
-        return y + gameToDisplayCoordinateOffsetY;
+    public double disposicionJuegoY(double y) {
+        return y + centrarDisposicionY;
     }
 }

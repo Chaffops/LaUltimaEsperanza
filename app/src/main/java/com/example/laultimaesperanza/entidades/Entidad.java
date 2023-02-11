@@ -35,6 +35,6 @@ public abstract class Entidad extends ObjetoJugable {
     }
 
     public void dibujar(Canvas lienzo, Disposicion disposicion) {
-        lienzo.drawCircle((float) disposicion.gameToDisplayCoordinatesX(posX),(float) disposicion.gameToDisplayCoordinatesY(posY),(float) radio, color);
+        lienzo.drawCircle((float) disposicion.disposicionJuegoX(posX),(float) disposicion.disposicionJuegoY(posY),(float) radio, color);
     }
 }

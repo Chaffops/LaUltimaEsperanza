@@ -16,6 +16,8 @@ import com.example.laultimaesperanza.entidades.Bala;
 import com.example.laultimaesperanza.entidades.Entidad;
 import com.example.laultimaesperanza.entidades.Jugador;
 import com.example.laultimaesperanza.entidades.Zombi;
+import com.example.laultimaesperanza.graficos.Animacion;
+import com.example.laultimaesperanza.graficos.DibujosImagenes;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,6 +25,7 @@ import java.util.List;
 
 public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
+    private final DibujosImagenes dibujosImagenes;
     private Jugador jugador;
     private Joystick joystick;
     MotorGrafico mGrafico;
@@ -44,9 +47,12 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         mGrafico = new MotorGrafico(this, surfaceHolder);
 
+        dibujosImagenes=new DibujosImagenes(context);
 
         joystick = new Joystick(250, 500, 70, 40);
-        jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30);
+
+        Animacion animacion=new Animacion(dibujosImagenes.getTodosDibujos());
+        jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion);
 
 
         DisplayMetrics displayMetrics=new DisplayMetrics();

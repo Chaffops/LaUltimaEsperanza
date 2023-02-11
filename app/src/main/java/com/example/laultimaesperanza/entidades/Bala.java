@@ -20,7 +20,7 @@ public class Bala extends Entidad {
                 ContextCompat.getColor(context, R.color.bala),
                 j.getPosicionX(),
                 j.getPosicionY(),
-                15
+                10
         );
         this.soldado = j;
 

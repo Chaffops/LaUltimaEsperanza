@@ -46,10 +46,10 @@ public class Vida {
         bordeAbajo = y - distanciaAlJugador;
         bordeArriba = bordeAbajo - h;
 
-        canvas.drawRect((float) disposicion.gameToDisplayCoordinatesX(bordeIzq),
-                (float) disposicion.gameToDisplayCoordinatesY(bordeArriba),
-                (float) disposicion.gameToDisplayCoordinatesX(bordeDrc),
-                (float) disposicion.gameToDisplayCoordinatesY(bordeAbajo), bordeColor);
+        canvas.drawRect((float) disposicion.disposicionJuegoX(bordeIzq),
+                (float) disposicion.disposicionJuegoY(bordeArriba),
+                (float) disposicion.disposicionJuegoX(bordeDrc),
+                (float) disposicion.disposicionJuegoY(bordeAbajo), bordeColor);
 
         float vidaIzq, vidaArriba, vidaDrc, vidaAbajo, vidaW, vidaH;
 
@@ -61,10 +61,10 @@ public class Vida {
         vidaArriba = bordeAbajo - vidaH;
 
         canvas.drawRect(
-                (float) disposicion.gameToDisplayCoordinatesX(vidaIzq),
-                (float) disposicion.gameToDisplayCoordinatesY(vidaArriba),
-                (float) disposicion.gameToDisplayCoordinatesX(vidaDrc),
-                (float) disposicion.gameToDisplayCoordinatesY(vidaAbajo),
+                (float) disposicion.disposicionJuegoX(vidaIzq),
+                (float) disposicion.disposicionJuegoY(vidaArriba),
+                (float) disposicion.disposicionJuegoX(vidaDrc),
+                (float) disposicion.disposicionJuegoY(vidaAbajo),
                 vidaColor);
 
     }
