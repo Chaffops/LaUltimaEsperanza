@@ -1,6 +1,7 @@
 package com.example.laultimaesperanza.juego;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 
 import android.view.MotionEvent;
@@ -9,6 +10,7 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
+import com.example.laultimaesperanza.PantallaJuego;
 import com.example.laultimaesperanza.entidades.Bala;
 import com.example.laultimaesperanza.entidades.Entidad;
 import com.example.laultimaesperanza.entidades.Jugador;
@@ -29,9 +31,11 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     private int joystickPointerID = 0;
     private int numeroBalasIniciales =0;
 
+    PantallaJuego pt;
 
-    public Juego(Context context) {
+    public Juego(Context context,PantallaJuego pt) {
         super(context);
+        this.pt=pt;
 
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
@@ -108,9 +112,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
         joystick.dibujar(canvas);
         jugador.dibujar(canvas);
         for (Zombi zombi : Zombis) {
-
             zombi.dibujar(canvas);
-
         }
         for (Bala bala : Balas) {
             bala.dibujar(canvas);
@@ -119,8 +121,18 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
 
     public void update() {
+
+
+        if(Jugador.getPuntosVida() <=0){
+//aqui va el codigo para cuando pierdes.
+            pt.irPirncipal();
+
+            return;
+        }
+
         joystick.actualizar();
         jugador.actualizar();
+
         if (Zombi.listoAparecer()) {
             Zombis.add(new Zombi(getContext(), jugador));
         }
@@ -142,6 +154,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
             if (Entidad.hayColision(zombi, jugador)) {
 
                 itZombi.remove();
+                jugador.setPuntosVida(jugador.getPuntosVida()-1);
                 continue;
             }
             Iterator<Bala> itBala = Balas.iterator();
@@ -155,5 +168,9 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
             }
         }
+    }
+
+    public void parar() {
+        mGrafico.para();
     }
 }

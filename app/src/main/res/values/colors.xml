@@ -19,4 +19,7 @@
     <color name="zombi">#FF0000</color>
     <color name="bala">#FF9400</color>
 
+    <color name="barraVidaBorde">#A0A0A0</color>
+    <color name="barraVidaVida">#FF0000</color>
+
 </resources>

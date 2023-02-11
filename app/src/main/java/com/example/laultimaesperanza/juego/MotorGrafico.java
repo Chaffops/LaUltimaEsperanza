@@ -91,4 +91,15 @@ public class MotorGrafico extends Thread {
 
 
     }
+
+    public void para() {
+        funciona = false;
+
+        try {
+            join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
