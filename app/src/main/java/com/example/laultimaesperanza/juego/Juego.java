@@ -23,6 +23,7 @@ import com.example.laultimaesperanza.mapa.Mapa;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TimerTask;
 
 public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -35,36 +36,51 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     private List<Zombi> Zombis = new ArrayList<Zombi>();
     private List<Bala> Balas = new ArrayList<Bala>();
     private int joystickPointerID = 0;
-    private int numeroBalasIniciales =0;
+    private int numeroBalasIniciales = 0;
+
+    public static double nivel;
 
     PantallaJuego pt;
     private Disposicion disposicion;
 
-    public Juego(Context context,PantallaJuego pt) {
+    public Juego(Context context, PantallaJuego pt, double nivel) {
         super(context);
-        this.pt=pt;
+        this.pt = pt;
+
+        Juego.nivel = nivel;
 
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
 
         mGrafico = new MotorGrafico(this, surfaceHolder);
 
-        dibujosImagenes=new DibujosImagenes(context);
+        dibujosImagenes = new DibujosImagenes(context);
 
         joystick = new Joystick(250, 500, 150, 100);
 
-        Animacion animacion=new Animacion(dibujosImagenes.getTodosDibujos());
-        jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion);
+        Animacion animacion = new Animacion(dibujosImagenes.getTodosDibujos());
+        jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion, 5);
 
 
-        DisplayMetrics displayMetrics=new DisplayMetrics();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
-        disposicion=new Disposicion(displayMetrics.widthPixels,displayMetrics.heightPixels,jugador);
+        disposicion = new Disposicion(displayMetrics.widthPixels, displayMetrics.heightPixels, jugador);
 
-        mapa=new Mapa(dibujosImagenes);
+        mapa = new Mapa(dibujosImagenes);
 
         setFocusable(true);
+
+        Thread tiempo = new Thread(() -> {
+            try {
+                Thread.sleep(90000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            pt.irPirncipal();
+
+        });
+        tiempo.start();
     }
 
     @Override
@@ -126,15 +142,15 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        mapa.dibujar(canvas,disposicion);
+        mapa.dibujar(canvas, disposicion);
 
         joystick.dibujar(canvas);
-        jugador.dibujar(canvas ,disposicion);
+        jugador.dibujar(canvas, disposicion);
         for (Zombi zombi : Zombis) {
-            zombi.dibujar(canvas,disposicion);
+            zombi.dibujar(canvas, disposicion);
         }
         for (Bala bala : Balas) {
-            bala.dibujar(canvas,disposicion);
+            bala.dibujar(canvas, disposicion);
         }
     }
 
@@ -142,7 +158,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
 
 
-        if(Jugador.getPuntosVida() <=0){
+        if (Jugador.getPuntosVida() <= 0) {
 //aqui va el codigo para cuando pierdes.
             pt.irPirncipal();
 
@@ -155,7 +171,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
         if (Zombi.listoAparecer()) {
             Zombis.add(new Zombi(getContext(), jugador));
         }
-        while (numeroBalasIniciales > 0){
+        while (numeroBalasIniciales > 0) {
             Balas.add(new Bala(getContext(), jugador));
             numeroBalasIniciales--;
         }
@@ -169,11 +185,11 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         Iterator<Zombi> itZombi = Zombis.iterator();
         while (itZombi.hasNext()) {
-            Entidad zombi = itZombi.next();
+            Zombi zombi = itZombi.next();
             if (Entidad.hayColision(zombi, jugador)) {
 
                 itZombi.remove();
-                jugador.setPuntosVida(jugador.getPuntosVida()-1);
+                jugador.setPuntosVida(jugador.getPuntosVida() - 1);
                 continue;
             }
             Iterator<Bala> itBala = Balas.iterator();
@@ -181,7 +197,14 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
                 Entidad bala = itBala.next();
                 if (Entidad.hayColision(bala, zombi)) {
                     itBala.remove();
-                    itZombi.remove();
+                    if (zombi.getConteo() <= 0) {
+                        itZombi.remove();
+                    } else {
+                        zombi.setConteo(zombi.getConteo() - jugador.getDaño());
+                        if (zombi.getConteo() <= 0) {
+                            itZombi.remove();
+                        }
+                    }
                     break;
                 }
 

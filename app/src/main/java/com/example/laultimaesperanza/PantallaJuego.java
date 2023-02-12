@@ -20,7 +20,9 @@ public class PantallaJuego extends AppCompatActivity {
         Window ventana = getWindow();
         ventana.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        juego=new Juego(this,this);
+        Bundle recibido=getIntent().getExtras();
+
+        juego=new Juego(this,this ,1);
 
         setContentView(juego);
     }

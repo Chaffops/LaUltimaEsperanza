@@ -4,34 +4,37 @@ import android.content.Context;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.laultimaesperanza.juego.Juego;
 import com.example.laultimaesperanza.juego.MotorGrafico;
 import com.example.laultimaesperanza.R;
 
 
 public class Zombi extends Entidad {
 
-    public static final double VELZOMBI = Jugador.VELJUGADOR * 0.6;
-    public static final double VELMAX = VELZOMBI / MotorGrafico.MAX_APS;
-    private static double aparicionesMinuto = 60;
+    public static double VELZOMBI = 240.0;
+    public static double VELMAX = VELZOMBI / MotorGrafico.MAX_APS;
+    private static double aparicionesMinuto= 10*Juego.nivel;
     private static double aparicionesSegundo = aparicionesMinuto / 60.0;
     private static double actualizacionPorAparicion = MotorGrafico.MAX_APS / aparicionesSegundo;
 
     private static double siguenteAparicion = actualizacionPorAparicion;
 
+    private int conteo;
 
     private final Jugador jugador;
 
     public Zombi(Context context, Jugador j, double x, double y, double r) {
         super(context, ContextCompat.getColor(context, R.color.zombi), x, y, r);
         this.jugador = j;
-
+        conteo = 10;
     }
 
 
-
     public Zombi(Context context, Jugador j) {
-        super(context,ContextCompat.getColor(context, R.color.zombi),Math.random() * 2000,Math.random() * 2000,30);
+        super(context, ContextCompat.getColor(context, R.color.zombi), Math.random() * 2000, Math.random() * 2000, 30);
         this.jugador = j;
+        conteo = 10;
+
     }
 
 
@@ -73,5 +76,13 @@ public class Zombi extends Entidad {
         posY += velY;
 
 
+    }
+
+    public int getConteo() {
+        return conteo;
+    }
+
+    public void setConteo(int conteo) {
+        this.conteo = conteo;
     }
 }

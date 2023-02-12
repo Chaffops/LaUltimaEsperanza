@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     public void empezarJuego(View vista) {
 
         Bundle datos = new Bundle();
-
-
+        /*datos.putInt("velocidad",);
+        int velocidad,int vidaInicial ,int ronda,int dinero, int puntuacion*/
         Intent iJuego = new Intent(this, PantallaJuego.class);
         iJuego.putExtras(datos);
         startActivity(iJuego);
@@ -93,10 +93,10 @@ public class MainActivity extends AppCompatActivity {
         Object[] x = dialogo.getInfo();
 
         if (x != null) {
+            long aber=control.insertarAjustes((String) x[0], (int) x[1], (String) x[2]);
 
-            System.out.println();
 
-            Toast.makeText(MainActivity.this, x[0] + " " + x[1] + " " + x[2], Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, aber+"", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(MainActivity.this, "Tiene que introducir un nombre para guardar los ajustes", Toast.LENGTH_LONG).show();
         }

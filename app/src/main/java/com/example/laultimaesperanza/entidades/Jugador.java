@@ -14,25 +14,28 @@ import com.example.laultimaesperanza.R;
 
 
 public class Jugador extends Entidad {
-    public static final double VELJUGADOR = 400.0;
-    public static final double VELMAX = VELJUGADOR / MotorGrafico.MAX_APS;
-    public static final int MAX_PUNTOS_VIDA = 10;
+    public static double VELJUGADOR = 400.0;
+    public static double VELMAX = VELJUGADOR / MotorGrafico.MAX_APS;
+    public static int MAX_PUNTOS_VIDA = 10;
 
     private static int puntosVida;
     private final Vida vida;
+
+    private int daño;
 
     private Joystick joystick;
     private Animacion animacion;
 
     private EstadoJugador estadoJugador;
 
-    public Jugador(Context context, Joystick j, double x, double y, double r, Animacion animacion) {
+    public Jugador(Context context, Joystick j, double x, double y, double r, Animacion animacion,int daño/*,int velocidad,int vidaInicial ,int ronda,int dinero, int puntuacion*/) {
         super(context, ContextCompat.getColor(context, R.color.jugador), x, y, r);
         this.joystick = j;
         this.vida = new Vida(context, this);
         this.puntosVida = MAX_PUNTOS_VIDA;
         this.animacion = animacion;
         this.estadoJugador=new EstadoJugador(this);
+        this.daño=daño;
     }
 
     public void actualizar() {
@@ -78,5 +81,9 @@ public class Jugador extends Entidad {
 
     public void setEstadoJugador(EstadoJugador estadoJugador) {
         this.estadoJugador = estadoJugador;
+    }
+
+    public int getDaño() {
+        return daño;
     }
 }

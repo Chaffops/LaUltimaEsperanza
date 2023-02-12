@@ -24,6 +24,7 @@ import android.widget.Switch;
 
 import com.example.laultimaesperanza.MainActivity;
 import com.example.laultimaesperanza.R;
+import com.example.laultimaesperanza.database.Controlador;
 
 public class DialogoFragment extends DialogFragment {
 
@@ -60,19 +61,20 @@ public class DialogoFragment extends DialogFragment {
         volumen = v.findViewById(R.id.barraVolumen);
         idioma = v.findViewById(R.id.selectorIdioma);
 
-        ArrayAdapter<CharSequence> adapter =ArrayAdapter.createFromResource(this.getContext(),R.array.idiomas, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.idiomas, android.R.layout.simple_spinner_item);
         idioma.setAdapter(adapter);
 
+        Controlador control = new Controlador(getContext());
+        Object[] z = control.recibirAjustes();
 
-        //si tiene un nombre en la bd
-        //nombre.setText();
+        if (z != null) {
+            nombre.setText((String) z[0]);
 
-        //si tiene un volumen seleccionado
-        //volumen.setProgress();
+            volumen.setProgress((int) z[1]);
 
-        //si tiene ingles por defecto
-        //idioma.setSelection(1);
-
+            if (z[2].equals("Español")){idioma.setSelection(0);}
+            else if (z[2].equals("Ingles")){idioma.setSelection(1);}
+        }
         btnVolver = v.findViewById(R.id.botonVolverAjustes);
 
         eventoVolver();
