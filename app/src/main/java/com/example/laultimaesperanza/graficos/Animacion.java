@@ -35,7 +35,6 @@ public class Animacion {
             case MOVIMIENTO:
                 tiempoParaCambio--;
                 if(tiempoParaCambio==0) {
-
                     tiempoParaCambio = MAX_TIEMPO_CAMBIO;
                     cambio();
                 }
