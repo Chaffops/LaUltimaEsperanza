@@ -31,9 +31,11 @@
             app:layout_constraintVertical_bias="0.205" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/barraVolumen"
             android:layout_width="252dp"
             android:layout_height="45dp"
+            android:max="10"
+            android:progress="0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
@@ -68,7 +70,7 @@
             app:layout_constraintVertical_bias="0.205" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/selectorIdioma"
             android:layout_width="239dp"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -134,7 +136,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/textDificultad"
+            android:id="@+id/labelNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/labelNombre"
@@ -159,57 +161,28 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textDificultad"
+            app:layout_constraintTop_toBottomOf="@+id/labelNombre"
             tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
-        app:layout_constraintVertical_bias="0.005">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
-        <TextView
-            android:id="@+id/textTema"
+        <Button
+            android:id="@+id/guardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/labelTema"
-            android:textSize="20sp"
+            android:background="@drawable/btnemp"
+            android:onClick="guardar"
+            android:text="@string/botonGuardar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.101"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.205" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch2"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:text="@string/textoTema"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.241"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.771" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/textoTemaClaro"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/switch2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.697" />
-
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

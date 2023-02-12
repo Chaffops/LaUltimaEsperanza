@@ -37,18 +37,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
                 <ImageButton
-                    android:id="@+id/imageButton20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:src="@tools:sample/avatars" />
+                    android:id="@+id/imageButton2"
+                    android:layout_width="150dp"
+                    android:layout_height="188dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1" />
 
                 <ImageButton
-                    android:id="@+id/imageButton19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:src="@tools:sample/avatars" />
+                    android:id="@+id/imageButton3"
+                    android:layout_width="150dp"
+                    android:layout_height="188dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -113,15 +113,20 @@
                 app:layout_constraintTop_toTopOf="@+id/constraintLayout2">
 
                 <ImageButton
-                    android:id="@+id/imageButton17"
-                    android:layout_width="150dp"
-                    android:layout_height="188dp"
-                    android:layout_marginEnd="2dp" />
+                    android:id="@+id/imageButton4"
+                    android:layout_width="136dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#00FFFFFF"
+                    android:src="@drawable/ic_directions_run" />
 
                 <ImageButton
-                    android:id="@+id/imageButton18"
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent" />
+                    android:id="@+id/imageButton6"
+                    android:layout_width="134dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#00FFFFFF"
+                    android:src="@drawable/ic_healing" />
             </LinearLayout>
 
             <LinearLayout

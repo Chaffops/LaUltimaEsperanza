@@ -5,6 +5,9 @@
     <string name="botonScoreBoard">Score board</string>
     <string name="botonTienda">Tienda</string>
 
+    <string name="botonGuardar">Guardar</string>
+
+
     <string name="labelAjustes">Ajustes</string>
     <string name="labelNombre">Nombre</string>
     <string name="labelVolumen">Volumen</string>

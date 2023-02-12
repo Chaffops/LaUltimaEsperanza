@@ -9,16 +9,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
+import android.widget.Spinner;
+import android.widget.Switch;
 
+import com.example.laultimaesperanza.MainActivity;
 import com.example.laultimaesperanza.R;
 
 public class DialogoFragment extends DialogFragment {
@@ -27,10 +31,21 @@ public class DialogoFragment extends DialogFragment {
 
     ImageButton btnVolver;
 
+    View v;
+
+    EditText nombre;
+
+    SeekBar volumen;
+
+    Spinner idioma;
+
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         return crearDialogoDeAjustes();
+
+
     }
 
     private AlertDialog crearDialogoDeAjustes() {
@@ -38,9 +53,25 @@ public class DialogoFragment extends DialogFragment {
         AlertDialog.Builder constructor = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View v = inflater.inflate(R.layout.fragment_dialogo, null);
+        v = inflater.inflate(R.layout.fragment_dialogo, null);
         constructor.setView(v);
 
+        nombre = v.findViewById(R.id.textoNombre);
+        volumen = v.findViewById(R.id.barraVolumen);
+        idioma = v.findViewById(R.id.selectorIdioma);
+
+        ArrayAdapter<CharSequence> adapter =ArrayAdapter.createFromResource(this.getContext(),R.array.idiomas, android.R.layout.simple_spinner_item);
+        idioma.setAdapter(adapter);
+
+
+        //si tiene un nombre en la bd
+        //nombre.setText();
+
+        //si tiene un volumen seleccionado
+        //volumen.setProgress();
+
+        //si tiene ingles por defecto
+        //idioma.setSelection(1);
 
         btnVolver = v.findViewById(R.id.botonVolverAjustes);
 
@@ -74,5 +105,20 @@ public class DialogoFragment extends DialogFragment {
         }
     }
 
+    public Object[] getInfo() {
+        Object[] x = new Object[3];
+        if (!nombre.getText().toString().equals("")) {
 
+            x[0] = nombre.getText().toString();
+
+            x[1] = volumen.getProgress();
+
+            x[2] = idioma.getSelectedItem();
+
+            return x;
+        } else {
+            return null;
+        }
+
+    }
 }
