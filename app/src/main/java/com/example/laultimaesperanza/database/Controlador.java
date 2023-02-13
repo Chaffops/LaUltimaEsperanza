@@ -80,7 +80,7 @@ public class Controlador extends SQLiteOpenHelper {
         }else{
             return null;
         }
-
+        cursor.close();
 
         return x;
     }

@@ -18,7 +18,7 @@
         <activity
             android:name=".PantallaJuego"
             android:exported="false"
-            android:screenOrientation="landscape"
+            android:screenOrientation="sensorLandscape"
 
             android:theme="@style/Theme.AppCompat.NoActionBar" >
             >

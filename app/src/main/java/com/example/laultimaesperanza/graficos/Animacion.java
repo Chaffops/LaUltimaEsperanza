@@ -10,7 +10,8 @@ public class Animacion {
 
     private Dibujos[] dibujos;
     private int tiempoParaCambio=0;
-    private final int MAX_TIEMPO_CAMBIO=10;
+    private final int MAX_TIEMPO_CAMBIO=20;
+    private int tiempoParaCambioZombi=0;
 
 
     public Animacion(Dibujos[] todosDibujos) {
@@ -51,11 +52,11 @@ public class Animacion {
 
     public void dibujar(Canvas lienzo, Disposicion disposicion, Zombi zombi) {
 
-        if(tiempoParaCambio==0){
-            tiempoParaCambio=MAX_TIEMPO_CAMBIO;
+        if(tiempoParaCambioZombi==0){
+            tiempoParaCambioZombi=MAX_TIEMPO_CAMBIO;
             cambioZombi();
         }else {
-            tiempoParaCambio--;
+            tiempoParaCambioZombi--;
         }
         dibujarFrame(lienzo,disposicion,zombi, dibujos[tipoMovimientoZombi]);
 

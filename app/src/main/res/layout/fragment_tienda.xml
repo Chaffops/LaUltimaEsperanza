@@ -69,7 +69,7 @@
 
                 <ImageView
                     android:id="@+id/imageButton6"
-                    android:layout_width="27dp"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00FFFFFF"
@@ -78,7 +78,7 @@
 
                 <TextView
                     android:id="@+id/labelCurar"
-                    android:layout_width="84dp"
+                    android:layout_width="7dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -89,15 +89,26 @@
                     android:layout_width="43dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnCurar"
+                        android:id="@+id/btnCorrer"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
                         android:background="@drawable/btnemp"
                         android:text="+"
+                        android:textColor="#000000"
+                        android:textSize="34sp" />
+
+                    <Button
+                        android:id="@+id/btnCorrer2"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btnemp"
+                        android:text="-"
                         android:textColor="#000000"
                         android:textSize="34sp" />
                 </LinearLayout>
@@ -117,7 +128,7 @@
 
                 <ImageView
                     android:id="@+id/imageButton2"
-                    android:layout_width="27dp"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#00FFFFFF"
@@ -126,7 +137,7 @@
 
                 <TextView
                     android:id="@+id/labelVelocidad"
-                    android:layout_width="84dp"
+                    android:layout_width="7dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -137,15 +148,26 @@
                     android:layout_width="43dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/btnCorrer"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
                         android:background="@drawable/btnemp"
                         android:text="+"
+                        android:textColor="#000000"
+                        android:textSize="34sp" />
+
+                    <Button
+                        android:id="@+id/btnCorrer2"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btnemp"
+                        android:text="-"
                         android:textColor="#000000"
                         android:textSize="34sp" />
                 </LinearLayout>
@@ -163,14 +185,14 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="27dp"
+                    android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:src="@drawable/ic_stream" />
 
                 <TextView
                     android:id="@+id/labelDaño"
-                    android:layout_width="84dp"
+                    android:layout_width="7dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -181,15 +203,26 @@
                     android:layout_width="43dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnDaño"
+                        android:id="@+id/btnCorrer"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="60dp"
                         android:layout_weight="1"
                         android:background="@drawable/btnemp"
                         android:text="+"
+                        android:textColor="#000000"
+                        android:textSize="34sp" />
+
+                    <Button
+                        android:id="@+id/btnCorrer2"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btnemp"
+                        android:text="-"
                         android:textColor="#000000"
                         android:textSize="34sp" />
                 </LinearLayout>
