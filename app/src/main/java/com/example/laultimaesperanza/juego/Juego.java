@@ -40,6 +40,8 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
     public static double nivel;
 
+    Animacion animacion;
+
     PantallaJuego pt;
     private Disposicion disposicion;
 
@@ -56,9 +58,9 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         dibujosImagenes = new DibujosImagenes(context);
 
-        joystick = new Joystick(250, 500, 150, 100);
+        joystick = new Joystick(250, 500, 120, 80);
 
-        Animacion animacion = new Animacion(dibujosImagenes.getTodosDibujos());
+        animacion = new Animacion(dibujosImagenes.getTodosDibujos());
         jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion, 5);
 
 
@@ -73,7 +75,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         Thread tiempo = new Thread(() -> {
             try {
-                Thread.sleep(90000);
+                Thread.sleep(120000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -169,7 +171,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
         jugador.actualizar();
 
         if (Zombi.listoAparecer()) {
-            Zombis.add(new Zombi(getContext(), jugador));
+            Zombis.add(new Zombi(getContext(), jugador, animacion));
         }
         while (numeroBalasIniciales > 0) {
             Balas.add(new Bala(getContext(), jugador));

@@ -1,9 +1,12 @@
 package com.example.laultimaesperanza.entidades;
 
 import android.content.Context;
+import android.graphics.Canvas;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.laultimaesperanza.graficos.Animacion;
+import com.example.laultimaesperanza.juego.Disposicion;
 import com.example.laultimaesperanza.juego.Juego;
 import com.example.laultimaesperanza.juego.MotorGrafico;
 import com.example.laultimaesperanza.R;
@@ -22,17 +25,20 @@ public class Zombi extends Entidad {
     private int conteo;
 
     private final Jugador jugador;
+    private Animacion animacion;
 
-    public Zombi(Context context, Jugador j, double x, double y, double r) {
+    public Zombi(Context context, Jugador j, double x, double y, double r, Animacion animacion) {
         super(context, ContextCompat.getColor(context, R.color.zombi), x, y, r);
         this.jugador = j;
+        this.animacion=animacion;
         conteo = 10;
     }
 
 
-    public Zombi(Context context, Jugador j) {
+    public Zombi(Context context, Jugador j, Animacion animacion) {
         super(context, ContextCompat.getColor(context, R.color.zombi), Math.random() * 2000, Math.random() * 2000, 30);
         this.jugador = j;
+        this.animacion=animacion;
         conteo = 10;
 
     }
@@ -74,6 +80,13 @@ public class Zombi extends Entidad {
         }
         posX += velX;
         posY += velY;
+
+
+    }
+
+    @Override
+    public void dibujar(Canvas lienzo, Disposicion disposicion) {
+        animacion.dibujar(lienzo,disposicion,this);
 
 
     }

@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             long aber=control.insertarAjustes((String) x[0], (int) x[1], (String) x[2]);
 
 
-            Toast.makeText(MainActivity.this, aber+"", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Ajustes guardados", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(MainActivity.this, "Tiene que introducir un nombre para guardar los ajustes", Toast.LENGTH_LONG).show();
         }
