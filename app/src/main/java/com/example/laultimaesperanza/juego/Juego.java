@@ -45,18 +45,18 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     private Disposicion disposicion;
 
     float velocidad;
-    int dinero,puntos,vida;
+    int dinero, puntos, vida;
 
-    public Juego(Context context, PantallaJuego pt, int ronda, int daño, float velocidad, int vida ,int dinero,int puntos) {
+    public Juego(Context context, PantallaJuego pt, int ronda, int daño, float velocidad, int vida, int dinero, int puntos) {
         super(context);
         this.pt = pt;
 
         Juego.ronda = ronda;
 
-        this.dinero=dinero;
-        this.puntos=puntos;
-        this.velocidad=velocidad;
-        this.vida=vida;
+        this.dinero = dinero;
+        this.puntos = puntos;
+        this.velocidad = velocidad;
+        this.vida = vida;
 
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
@@ -68,7 +68,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
         joystick = new Joystick(250, 500, 120, 80);
 
         animacion = new Animacion(dibujosImagenes.getTodosDibujos());
-        jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion, daño,velocidad, vida);
+        jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion, daño, velocidad, vida);
 
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -82,37 +82,46 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         Thread tiempo = new Thread(() -> {
             try {
-                Thread.sleep(10000);
+                for (int x = 0; x < 90; x++) {
+
+                    Thread.sleep(1000);
+                    hacerPuntos();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            pt.irGameOver(this.ronda,jugador.getDaño(),this.velocidad,Jugador.getPuntosVida(),this.dinero,this.puntos);
+            pt.irGameOver(this.ronda, jugador.getDaño(), this.velocidad, Jugador.getPuntosVida(), this.dinero, this.puntos);
 
         });
         tiempo.start();
     }
 
+    public void hacerPuntos() {
+        puntos++;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
 
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN:
                 if (joystick.getEsPresionado()) {
-
                     numeroBalasIniciales++;
-
                 } else if (joystick.HayPulsacion((double) event.getX(), (double) event.getY())) {
                     joystickPointerID = event.getPointerId(event.getActionIndex());
                     joystick.setEsPresionado(true);
                 } else {
                     numeroBalasIniciales++;
-
                 }
                 return true;
             case MotionEvent.ACTION_MOVE:
                 if (joystick.getEsPresionado()) {
+
                     joystick.setDireccionDePresion((double) event.getX(), (double) event.getY());
+
+
                 }
                 return true;
             case MotionEvent.ACTION_UP:
@@ -169,13 +178,23 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         if (Jugador.getPuntosVida() <= 0) {
 //aqui va el codigo para cuando pierdes.
-            pt.irGameOver(ronda,jugador.getDaño(),velocidad,Jugador.getPuntosVida(),dinero,puntos);
+            pt.irGameOver(ronda, jugador.getDaño(), velocidad, Jugador.getPuntosVida(), dinero, puntos);
 
             return;
         }
 
         joystick.actualizar();
-        jugador.actualizar();
+        if (jugador.getPosicionX() <= 0) {
+            jugador.actualizarN(1);
+        } else if (jugador.getPosicionY() <= 0) {
+            jugador.actualizarN(2);
+        } else if (jugador.getPosicionX() >= 2200) {
+            jugador.actualizarN(3);
+        } else if (jugador.getPosicionY() >= 2200) {
+            jugador.actualizarN(4);
+        } else {
+            jugador.actualizar();
+        }
 
         if (Zombi.listoAparecer()) {
             Zombis.add(new Zombi(getContext(), jugador, animacion, ronda));
@@ -213,8 +232,8 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
                         System.out.println(zombi.getConteo());
                         if (zombi.getConteo() <= 0) {
                             itZombi.remove();
-                            puntos+=10;
-                            dinero+=10;
+                            puntos += 10;
+                            dinero += 10;
                         }
                     }
                     break;

@@ -28,17 +28,17 @@ public class Jugador extends Entidad {
 
     private EstadoJugador estadoJugador;
 
-    public Jugador(Context context, Joystick j, double x, double y, double r, Animacion animacion,int daño,float velocidad,int vidaInicial ) {
+    public Jugador(Context context, Joystick j, double x, double y, double r, Animacion animacion, int daño, float velocidad, int vidaInicial) {
         super(context, ContextCompat.getColor(context, R.color.jugador), x, y, r);
         this.joystick = j;
         this.vida = new Vida(context, this);
         this.puntosVida = MAX_PUNTOS_VIDA;
         this.animacion = animacion;
-        this.estadoJugador=new EstadoJugador(this);
+        this.estadoJugador = new EstadoJugador(this);
 
-        this.daño=daño;
-        VELJUGADOR=VELJUGADOR+(VELJUGADOR*velocidad);
-        puntosVida=vidaInicial;
+        this.daño = daño;
+        VELJUGADOR = VELJUGADOR + (VELJUGADOR * velocidad);
+        puntosVida = vidaInicial;
 
     }
 
@@ -61,10 +61,41 @@ public class Jugador extends Entidad {
 
     }
 
+    public void actualizarN(int i) {
+
+        int x=1;
+        int y=1;
+
+        if (i==1) {
+            x=-1;
+        }else if(i==2){
+            y=-1;
+        }else if(i==3){
+            x=-1;
+        }else if(i==4){
+            y=-1;
+        }
+        velX = joystick.getDireccionPresionX() * (VELMAX*x);
+        velY = joystick.getDireccionPresionY() * (VELMAX*y);
+        posX += velX;
+        posY += velY;
+
+        if (velX != 0 || velY != 0) {
+
+            double distance = Math.sqrt(Math.pow(0 - velX, 2) + Math.pow(0 - velY, 2));
+
+            dirX = velX / distance;
+            dirY = velY / distance;
+
+        }
+        estadoJugador.actualizar();
+
+    }
+
     @Override
     public void dibujar(Canvas lienzo, Disposicion disposicion) {
 
-        animacion.dibujar(lienzo,disposicion,this);
+        animacion.dibujar(lienzo, disposicion, this);
         vida.dibujar(lienzo, disposicion);
     }
 
