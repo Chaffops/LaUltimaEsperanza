@@ -82,7 +82,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="20"
+                    android:text="35  -  1"
                     android:textSize="20sp" />
 
                 <LinearLayout
@@ -196,7 +196,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="40"
+                    android:text="35  -  1"
                     android:textSize="20sp" />
 
                 <LinearLayout

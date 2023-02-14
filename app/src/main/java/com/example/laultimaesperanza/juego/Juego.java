@@ -44,11 +44,19 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     PantallaJuego pt;
     private Disposicion disposicion;
 
-    public Juego(Context context, PantallaJuego pt, int ronda, int daño, float velocidad, int vida ) {
+    float velocidad;
+    int dinero,puntos,vida;
+
+    public Juego(Context context, PantallaJuego pt, int ronda, int daño, float velocidad, int vida ,int dinero,int puntos) {
         super(context);
         this.pt = pt;
 
         Juego.ronda = ronda;
+
+        this.dinero=dinero;
+        this.puntos=puntos;
+        this.velocidad=velocidad;
+        this.vida=vida;
 
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
@@ -74,11 +82,11 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         Thread tiempo = new Thread(() -> {
             try {
-                Thread.sleep(120000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            pt.irPirncipal();
+            pt.irGameOver(this.ronda,jugador.getDaño(),this.velocidad,Jugador.getPuntosVida(),this.dinero,this.puntos);
 
         });
         tiempo.start();
@@ -161,7 +169,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         if (Jugador.getPuntosVida() <= 0) {
 //aqui va el codigo para cuando pierdes.
-            pt.irPirncipal();
+            pt.irGameOver(ronda,jugador.getDaño(),velocidad,Jugador.getPuntosVida(),dinero,puntos);
 
             return;
         }
@@ -202,8 +210,11 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
                         itZombi.remove();
                     } else {
                         zombi.setConteo(zombi.getConteo() - jugador.getDaño());
+                        System.out.println(zombi.getConteo());
                         if (zombi.getConteo() <= 0) {
                             itZombi.remove();
+                            puntos+=10;
+                            dinero+=10;
                         }
                     }
                     break;

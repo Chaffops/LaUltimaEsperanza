@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         Object[] info = control.recibirInfoJuego();
         if (info != null) {
-            info[5] = dinero;
-            info[6] = puntos;
+            dinero= (int) info[4];
+            puntos= (int) info[5];
         }
     }
 
@@ -49,21 +49,23 @@ public class MainActivity extends AppCompatActivity {
             vida = 10;
             daño = 1;
             ronda = 1;
+
         } else {
             velocidad = (float) info[0];
             vida = (int) info[1];
             daño = (int) info[2];
-            ronda = (int) info[3];
+            ronda = (int) info[3]+1;
             dinero = (int) info[4];
             puntos = (int) info[5];
         }
-
 
         Bundle datos = new Bundle();
         datos.putFloat("velocidad", velocidad);
         datos.putInt("vida", vida);
         datos.putInt("daño", daño);
         datos.putInt("ronda", ronda);
+        datos.putInt("dinero", dinero);
+        datos.putInt("puntos", puntos);
 
         Intent iJuego = new Intent(this, PantallaJuego.class);
         iJuego.putExtras(datos);
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
 
+
     }
 
     public void irScoreBoard(View vista) {
@@ -122,19 +125,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*public void comprar(View view) {
 
-        Object[] x = dialogo.getInfo();
-
-        if (x != null) {
-            control.insertarAjustes((String) x[0], (int) x[1], (String) x[2]);
-
-
-            Toast.makeText(MainActivity.this, "Ajustes guardados", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(MainActivity.this, "Tiene que introducir un nombre para guardar los ajustes", Toast.LENGTH_LONG).show();
-        }
-    }*/
 
 
 }

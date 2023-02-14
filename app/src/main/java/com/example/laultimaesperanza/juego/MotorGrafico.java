@@ -5,7 +5,7 @@ import android.view.SurfaceHolder;
 import com.example.laultimaesperanza.juego.Juego;
 
 public class MotorGrafico extends Thread {
-    public static final double MAX_APS = 60.0;
+    public static final double MAX_APS = 30.0;
     private static final double MEDIA_APS = 1000/MAX_APS;
     private final Juego juego;
     private boolean funciona;

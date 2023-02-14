@@ -10,7 +10,7 @@ public class Animacion {
 
     private Dibujos[] dibujos;
     private int tiempoParaCambio=0;
-    private final int MAX_TIEMPO_CAMBIO=20;
+    private final int MAX_TIEMPO_CAMBIO=5;
     private int tiempoParaCambioZombi=0;
 
 

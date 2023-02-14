@@ -22,15 +22,30 @@ public class PantallaJuego extends AppCompatActivity {
 
         Bundle recibido=getIntent().getExtras();
 
-        juego=new Juego(this,this ,recibido.getInt("ronda"), recibido.getInt("daño"),recibido.getFloat("velocidad"), recibido.getInt("vida"));
+        juego=new Juego(this,this ,recibido.getInt("ronda"), recibido.getInt("daño"),recibido.getFloat("velocidad"), recibido.getInt("vida"),recibido.getInt("dinero"),recibido.getInt("puntos"));
 
         setContentView(juego);
     }
 
-    public void irPirncipal(){
+    public void irGameOver( int ronda, int daño, float velocidad, int vida ,int dinero,int puntos){
+
+        Bundle datos = new Bundle();
+        datos.putFloat("velocidad", velocidad);
+        datos.putInt("vida", vida);
+        datos.putInt("daño", daño);
+        datos.putInt("ronda", ronda);
+        datos.putInt("dinero", dinero);
+        datos.putInt("puntos", puntos);
 
         Intent iOver = new Intent(this, GameOver.class);
+        iOver.putExtras(datos);
         startActivity(iOver);
+        try {
+            onDestroy();
+        }catch (IllegalStateException ex){
+
+        }
+
     }
 
     @Override

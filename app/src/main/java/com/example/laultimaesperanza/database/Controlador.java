@@ -94,9 +94,9 @@ public class Controlador extends SQLiteOpenHelper {
             db.execSQL("delete from " + TABLA2);
             ContentValues valores = new ContentValues();
 
-            valores.put("velocidad", daño);
-            valores.put("vida", velocidad);
-            valores.put("daño", vida);
+            valores.put("velocidad", velocidad);
+            valores.put("vida", vida);
+            valores.put("daño", daño);
             valores.put("ronda", ronda);
             valores.put("dinero", dinero);
             valores.put("puntuacion", puntuacion);
@@ -109,8 +109,14 @@ public class Controlador extends SQLiteOpenHelper {
         return num;
     }
 
+    public void muerte(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("delete from " + TABLA2);
+    }
+
+
     public Object[] recibirInfoJuego() {
-        Object[] x = new Object[5];
+        Object[] x = new Object[6];
 
         SQLiteDatabase db = getWritableDatabase();
 

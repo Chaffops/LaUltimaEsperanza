@@ -10,6 +10,15 @@
 
 
     <string name="labelAjustes">Ajustes</string>
+
+    <string name="labelGameOver">Game Over</string>
+    <string name="labelHas">Has</string>
+    <string name="labelPuntos">Puntos</string>
+    <string name="labelDineros">Dinero</string>
+    <string name="labelRonda">Ronda</string>
+
+
+
     <string name="labelNombre">Nombre</string>
     <string name="labelVolumen">Volumen</string>
     <string name="labelIdioma">Idioma</string>

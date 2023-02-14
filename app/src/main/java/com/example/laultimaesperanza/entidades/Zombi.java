@@ -40,7 +40,7 @@ public class Zombi extends Entidad {
         super(context, ContextCompat.getColor(context, R.color.zombi), Math.random() * 2000, Math.random() * 2000, 30);
         this.jugador = j;
         this.animacion=animacion;
-        conteo = 10*ronda;
+        conteo = (ronda==1||ronda==2)?1:(ronda==3||ronda==4)?2:(ronda==5||ronda==6)?3:5;
 
     }
 
