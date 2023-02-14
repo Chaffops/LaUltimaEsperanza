@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.laultimaesperanza.database.Controlador;
@@ -35,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         Object[] info = control.recibirInfoJuego();
         if (info != null) {
-            dinero= (int) info[4];
-            puntos= (int) info[5];
+            dinero = (int) info[4];
+            puntos = (int) info[5];
         }
     }
 
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             velocidad = (float) info[0];
             vida = (int) info[1];
             daño = (int) info[2];
-            ronda = (int) info[3]+1;
+            ronda = (int) info[3] + 1;
             dinero = (int) info[4];
             puntos = (int) info[5];
         }
@@ -96,9 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .addToBackStack("")
                 .commit();
-
-
-
     }
 
     public void irScoreBoard(View vista) {
@@ -124,8 +122,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Tiene que introducir un nombre para guardar los ajustes", Toast.LENGTH_LONG).show();
         }
     }
-
-
 
 
 }

@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.laultimaesperanza.R;
+import com.example.laultimaesperanza.database.Controlador;
 
 public class FragmentTienda extends Fragment {
 
@@ -36,6 +38,26 @@ public class FragmentTienda extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+        TextView labelDinero = getView().findViewById(R.id.labelLoqueTengo);
+        TextView labelVelocidad = getView().findViewById(R.id.labelVelocidad);
+        TextView labelCurar = getView().findViewById(R.id.labelCurar);
+        TextView labelDaño = getView().findViewById(R.id.labelDaño);
+
+        Controlador control = new Controlador(getContext());
+        Object[] info = control.recibirInfoJuego();
+
+        if (info != null) {
+            labelDinero.setText((CharSequence) info[4]);
+            labelVelocidad.setText((CharSequence) info[0]);
+            labelCurar.setText((CharSequence) info[1]);
+            labelDaño.setText((CharSequence) info[2]);
+        } else {
+            labelDinero.setText("0");
+            labelVelocidad.setText("0");
+            labelCurar.setText("0");
+            labelDaño.setText("0");
         }
     }
 

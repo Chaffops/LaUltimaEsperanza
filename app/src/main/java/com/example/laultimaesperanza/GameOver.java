@@ -59,17 +59,12 @@ public class GameOver extends AppCompatActivity {
 
         if (surv.getText().equals("Muerto")) {
             control.gameOver();
-
         } else {
             control.insertarInfoJuego(recibido.getFloat("velocidad"), recibido.getInt("vida"), recibido.getInt("daño"), recibido.getInt("ronda"), recibido.getInt("dinero"), recibido.getInt("puntuacion"));
         }
         Intent iPrici = new Intent(this, MainActivity.class);
         startActivity(iPrici);
-        try {
-            onDestroy();
-        } catch (IllegalStateException ex) {
 
-        }
     }
 
 }
