@@ -47,6 +47,8 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     float velocidad;
     int dinero, puntos, vida;
 
+    Thread tiempo;
+
     public Juego(Context context, PantallaJuego pt, int ronda, int daño, float velocidad, int vida, int dinero, int puntos) {
         super(context);
         this.pt = pt;
@@ -80,7 +82,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         setFocusable(true);
 
-        Thread tiempo = new Thread(() -> {
+        tiempo = new Thread(() -> {
             try {
                 for (int x = 0; x < 90; x++) {
 
@@ -178,6 +180,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         if (Jugador.getPuntosVida() <= 0) {
 //aqui va el codigo para cuando pierdes.
+            tiempo.interrupt();
             pt.irGameOver(ronda, jugador.getDaño(), velocidad, Jugador.getPuntosVida(), dinero, puntos);
 
             return;
