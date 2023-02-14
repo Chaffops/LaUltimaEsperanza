@@ -22,15 +22,15 @@ public class PantallaJuego extends AppCompatActivity {
 
         Bundle recibido=getIntent().getExtras();
 
-        juego=new Juego(this,this ,1);
+        juego=new Juego(this,this ,recibido.getInt("ronda"), recibido.getInt("daño"),recibido.getFloat("velocidad"), recibido.getInt("vida"));
 
         setContentView(juego);
     }
 
     public void irPirncipal(){
 
-        Intent iPrici = new Intent(this, MainActivity.class);
-        startActivity(iPrici);
+        Intent iOver = new Intent(this, GameOver.class);
+        startActivity(iOver);
     }
 
     @Override

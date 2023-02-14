@@ -23,7 +23,6 @@ import com.example.laultimaesperanza.mapa.Mapa;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.TimerTask;
 
 public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -38,18 +37,18 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     private int joystickPointerID = 0;
     private int numeroBalasIniciales = 0;
 
-    public static double nivel;
+    public static int ronda;
 
     Animacion animacion;
 
     PantallaJuego pt;
     private Disposicion disposicion;
 
-    public Juego(Context context, PantallaJuego pt, double nivel) {
+    public Juego(Context context, PantallaJuego pt, int ronda, int daño, float velocidad, int vida ) {
         super(context);
         this.pt = pt;
 
-        Juego.nivel = nivel;
+        Juego.ronda = ronda;
 
         SurfaceHolder surfaceHolder = getHolder();
         surfaceHolder.addCallback(this);
@@ -61,7 +60,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
         joystick = new Joystick(250, 500, 120, 80);
 
         animacion = new Animacion(dibujosImagenes.getTodosDibujos());
-        jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion, 5);
+        jugador = new Jugador(getContext(), joystick, 2 * 500, 500, 30, animacion, daño,velocidad, vida);
 
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -171,7 +170,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
         jugador.actualizar();
 
         if (Zombi.listoAparecer()) {
-            Zombis.add(new Zombi(getContext(), jugador, animacion));
+            Zombis.add(new Zombi(getContext(), jugador, animacion, ronda));
         }
         while (numeroBalasIniciales > 0) {
             Balas.add(new Bala(getContext(), jugador));

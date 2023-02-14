@@ -1,16 +1,11 @@
 package com.example.laultimaesperanza;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.example.laultimaesperanza.database.Controlador;
@@ -27,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     DialogoFragment dialogo;
 
-    private int volumen;
+    private int dinero = 0;
+
+    private int puntos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +32,39 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         control = new Controlador(MainActivity.this);
-        SQLiteDatabase db = control.getWritableDatabase();
 
-
+        Object[] info = control.recibirInfoJuego();
+        if (info != null) {
+            info[5] = dinero;
+            info[6] = puntos;
+        }
     }
 
     public void empezarJuego(View vista) {
+        float velocidad;
+        int vida, daño, ronda;
+        Object[] info = control.recibirInfoJuego();
+        if (info == null) {
+            velocidad = 0;
+            vida = 10;
+            daño = 1;
+            ronda = 1;
+        } else {
+            velocidad = (float) info[0];
+            vida = (int) info[1];
+            daño = (int) info[2];
+            ronda = (int) info[3];
+            dinero = (int) info[4];
+            puntos = (int) info[5];
+        }
+
 
         Bundle datos = new Bundle();
-        /*datos.putInt("velocidad",);
-        int velocidad,int vidaInicial ,int ronda,int dinero, int puntuacion*/
+        datos.putFloat("velocidad", velocidad);
+        datos.putInt("vida", vida);
+        datos.putInt("daño", daño);
+        datos.putInt("ronda", ronda);
+
         Intent iJuego = new Intent(this, PantallaJuego.class);
         iJuego.putExtras(datos);
         startActivity(iJuego);
@@ -93,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         Object[] x = dialogo.getInfo();
 
         if (x != null) {
-            long aber=control.insertarAjustes((String) x[0], (int) x[1], (String) x[2]);
+            control.insertarAjustes((String) x[0], (int) x[1], (String) x[2]);
 
 
             Toast.makeText(MainActivity.this, "Ajustes guardados", Toast.LENGTH_LONG).show();
@@ -102,12 +122,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*public void comprar(View view) {
 
-    public int getVolumen() {
-        return volumen;
-    }
+        Object[] x = dialogo.getInfo();
 
-    public void setVolumen(int volumen) {
-        this.volumen = volumen;
-    }
+        if (x != null) {
+            control.insertarAjustes((String) x[0], (int) x[1], (String) x[2]);
+
+
+            Toast.makeText(MainActivity.this, "Ajustes guardados", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(MainActivity.this, "Tiene que introducir un nombre para guardar los ajustes", Toast.LENGTH_LONG).show();
+        }
+    }*/
+
+
 }

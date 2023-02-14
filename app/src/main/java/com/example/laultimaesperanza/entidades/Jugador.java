@@ -28,14 +28,18 @@ public class Jugador extends Entidad {
 
     private EstadoJugador estadoJugador;
 
-    public Jugador(Context context, Joystick j, double x, double y, double r, Animacion animacion,int daño/*,int velocidad,int vidaInicial ,int ronda,int dinero, int puntuacion*/) {
+    public Jugador(Context context, Joystick j, double x, double y, double r, Animacion animacion,int daño,float velocidad,int vidaInicial ) {
         super(context, ContextCompat.getColor(context, R.color.jugador), x, y, r);
         this.joystick = j;
         this.vida = new Vida(context, this);
         this.puntosVida = MAX_PUNTOS_VIDA;
         this.animacion = animacion;
         this.estadoJugador=new EstadoJugador(this);
+
         this.daño=daño;
+        VELJUGADOR=VELJUGADOR+(VELJUGADOR*velocidad);
+        puntosVida=vidaInicial;
+
     }
 
     public void actualizar() {
