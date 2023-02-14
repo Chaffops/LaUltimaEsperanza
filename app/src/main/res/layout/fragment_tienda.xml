@@ -78,9 +78,10 @@
 
                 <TextView
                     android:id="@+id/labelCurar"
-                    android:layout_width="7dp"
+                    android:layout_width="31dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:fontFamily="@font/permanent_marker"
                     android:gravity="center"
                     android:text="35  -  1"
                     android:textSize="20sp" />
@@ -93,9 +94,9 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnCorrer"
+                        android:id="@+id/btnCurarMas"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="55dp"
                         android:layout_weight="1"
                         android:background="@drawable/btnemp"
                         android:text="+"
@@ -103,9 +104,9 @@
                         android:textSize="34sp" />
 
                     <Button
-                        android:id="@+id/btnCorrer2"
+                        android:id="@+id/btnCurarMenos"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="55dp"
                         android:layout_weight="1"
                         android:background="@drawable/btnemp"
                         android:text="-"
@@ -137,9 +138,10 @@
 
                 <TextView
                     android:id="@+id/labelVelocidad"
-                    android:layout_width="7dp"
+                    android:layout_width="31dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:fontFamily="@font/permanent_marker"
                     android:gravity="center"
                     android:text="35  -  1"
                     android:textSize="20sp" />
@@ -152,9 +154,9 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnCorrer"
+                        android:id="@+id/btnCorrerMas"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="55dp"
                         android:layout_weight="1"
                         android:background="@drawable/btnemp"
                         android:text="+"
@@ -162,9 +164,9 @@
                         android:textSize="34sp" />
 
                     <Button
-                        android:id="@+id/btnCorrer2"
+                        android:id="@+id/btnCorrerMenos"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="55dp"
                         android:layout_weight="1"
                         android:background="@drawable/btnemp"
                         android:text="-"
@@ -192,9 +194,10 @@
 
                 <TextView
                     android:id="@+id/labelDaño"
-                    android:layout_width="7dp"
+                    android:layout_width="31dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:fontFamily="@font/permanent_marker"
                     android:gravity="center"
                     android:text="35  -  1"
                     android:textSize="20sp" />
@@ -207,9 +210,9 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnCorrer"
+                        android:id="@+id/btnDañoMas"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="55dp"
                         android:layout_weight="1"
                         android:background="@drawable/btnemp"
                         android:text="+"
@@ -217,9 +220,9 @@
                         android:textSize="34sp" />
 
                     <Button
-                        android:id="@+id/btnCorrer2"
+                        android:id="@+id/btnDañoMenos"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="55dp"
                         android:layout_weight="1"
                         android:background="@drawable/btnemp"
                         android:text="-"
@@ -247,6 +250,7 @@
                 android:id="@+id/labelDinero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/permanent_marker"
                 android:text="Dinero"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
@@ -262,6 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="14dp"
+                android:fontFamily="@font/permanent_marker"
                 android:text="150"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
