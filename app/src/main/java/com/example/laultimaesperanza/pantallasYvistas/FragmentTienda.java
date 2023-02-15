@@ -6,12 +6,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.laultimaesperanza.R;
 import com.example.laultimaesperanza.database.Controlador;
@@ -28,6 +30,13 @@ public class FragmentTienda extends Fragment {
     TextView labelVelocidad;
     TextView labelCurar;
     TextView labelDaño;
+    int numVel;
+
+    int dinero;
+    int dineroGastado = 0;
+    int precioCorrer = 60, precioCurar = 10, precioDaño = 40;
+
+    Object[] cambios;
 
     public FragmentTienda() {
     }
@@ -60,24 +69,27 @@ public class FragmentTienda extends Fragment {
         labelCurar = view.findViewById(R.id.labelCurar);
         labelDaño = view.findViewById(R.id.labelDaño);
 
-        int dineroGastado = 0;
-        int precioCorrer = 60, precioCurar = 10, precioDaño = 40;
 
         Controlador control = new Controlador(getContext());
         Object[] info = control.recibirInfoJuego();
 
+        if (info != null) {
+            cambios = info.clone();
+            dinero = (int) info[4];
+            numVel = ((float) info[0] == 0.0) ? 1 : ((float) info[0] == 0.25) ? 2 : ((float) info[0] == 0.50) ? 3 : ((float) info[0] == 0.75) ? 4 : ((float) info[0] == 1.0) ? 5 : 6;
+        }
+
 
         if (info != null) {
             labelDinero.setText(String.valueOf(info[4]));
-            int numVel = ((float) info[0] == 0.0) ? 1 : ((float) info[0] == 0.25) ? 2 : ((float) info[0] == 0.50) ? 3 : ((float) info[0] == 0.75) ? 4 : ((float) info[0] == 1.0) ? 5 : 6;
             labelVelocidad.setText(String.valueOf(precioCorrer) + "$ - " + numVel + "/5");
             labelCurar.setText(String.valueOf(precioCurar) + "$ - " + String.valueOf(info[1]) + "/10");
             labelDaño.setText(String.valueOf(precioDaño) + "$ - " + String.valueOf(info[2]) + "/5");
         } else {
             labelDinero.setText("0");
-            labelVelocidad.setText("0");
-            labelCurar.setText("10");
-            labelDaño.setText("1");
+            labelVelocidad.setText(String.valueOf(precioCorrer) + "$ - 1/5");
+            labelCurar.setText(String.valueOf(precioCurar) + "$ - 10/10");
+            labelDaño.setText(String.valueOf(precioDaño) + "$ - 1/5");
         }
 
 
@@ -85,25 +97,34 @@ public class FragmentTienda extends Fragment {
         btnComprar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder dialogo = new AlertDialog.Builder(getActivity());
-                dialogo.setMessage("¿Seguro que desea realizar la compra?")
-                        .setCancelable(false)
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                if (info[0] != cambios[0] || info[1] != cambios[1] || info[2] != cambios[2] || info[3] != cambios[3] || info[4] != cambios[4] || info[5] != cambios[5]) {
+                    AlertDialog.Builder dialogo = new AlertDialog.Builder(getActivity());
+                    dialogo.setMessage("Confirnmar la compra de " + ((int) info[4] - getDinero()) + "$")
+                            .setCancelable(false)
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    control.insertarInfoJuego((Float) cambios[0], (Integer) cambios[1], (Integer) cambios[2], (Integer) cambios[3], getDinero(), (Integer) cambios[5]);
+                                    FragmentManager fManager = getActivity().getSupportFragmentManager();
+                                    fManager.beginTransaction()
+                                            .replace(R.id.ContenedorFragments, FragmentTienda.class, null)
+                                            .setReorderingAllowed(true)
+                                            .addToBackStack("")
+                                            .commit();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
 
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                AlertDialog seguro = dialogo.create();
-                seguro.setTitle("Alerta");
-                seguro.show();
-
+                                }
+                            });
+                    AlertDialog seguro = dialogo.create();
+                    seguro.setTitle("Confirmacion");
+                    seguro.show();
+                } else {
+                    Toast.makeText(getContext(), "No has hecho cambios", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -113,7 +134,17 @@ public class FragmentTienda extends Fragment {
             @Override
             public void onClick(View view) {
 
-                labelDinero.setTextColor(Color.RED);
+                if (dinero >= precioCorrer && !String.valueOf(cambios[0]).equals("1.0")) {
+                    labelDinero.setTextColor(Color.RED);
+                    setDinero(getDinero() - precioCorrer);
+                    labelVelocidad.setTextColor(Color.GREEN);
+                    cambios[0] = (float) cambios[0] + 0.25F;
+                    int numVelM = ((float) cambios[0] == 0.0) ? 1 : ((float) cambios[0] == 0.25) ? 2 : ((float) cambios[0] == 0.50) ? 3 : ((float) cambios[0] == 0.75) ? 4 : 5;
+                    labelVelocidad.setText(String.valueOf(precioCorrer) + "$ - " + numVelM + "/5");
+                    labelDinero.setText(String.valueOf(getDinero()));
+                } else {
+                    Toast.makeText(getContext(), "No tienes pasta", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -121,8 +152,25 @@ public class FragmentTienda extends Fragment {
         btnCorrerMenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
+                if (info != null) {
+                    if (!String.valueOf(info[0]).equals(String.valueOf(cambios[0]))) {
+                        labelDinero.setTextColor(Color.RED);
+                        setDinero(getDinero() + precioCorrer);
+                        labelVelocidad.setTextColor(Color.GREEN);
+                        cambios[0] = (float) cambios[0] - 0.25F;
+                        int numVelM = ((float) cambios[0] == 0.0) ? 1 : ((float) cambios[0] == 0.25) ? 2 : ((float) cambios[0] == 0.50) ? 3 : ((float) cambios[0] == 0.75) ? 4 : ((float) cambios[0] == 1.0) ? 5 : 6;
+                        labelVelocidad.setText(String.valueOf(precioCorrer) + "$ - " + numVelM + "/5");
+                        labelDinero.setText(String.valueOf(getDinero()));
+                        if (String.valueOf(info[0]).equals(String.valueOf(cambios[0]))) {
+                            labelVelocidad.setTextColor(Color.WHITE);
+                            if ((int) cambios[4] == getDinero()) {
+                                labelDinero.setTextColor(Color.WHITE);
+                            }
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "No puedes quitar mas", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
@@ -130,17 +178,42 @@ public class FragmentTienda extends Fragment {
         btnCurarMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                labelDinero.setTextColor(Color.RED);
 
+                if (dinero >= precioCurar && (int) cambios[1] != 10) {
+                    labelDinero.setTextColor(Color.RED);
+                    setDinero(getDinero() - precioCurar);
+                    labelCurar.setTextColor(Color.GREEN);
+                    cambios[1] = (int) cambios[1] + 1;
+                    labelCurar.setText(String.valueOf(precioCurar) + "$ - " + String.valueOf(cambios[1]) + "/10");
+                    labelDinero.setText(String.valueOf(getDinero()));
+                } else {
+                    Toast.makeText(getContext(), "No tienes pasta", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         Button btnCurarMenos = view.findViewById(R.id.btnCurarMenos);
         btnCurarMenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                if (info != null) {
+                    if (info[1] != cambios[1]) {
+                        labelDinero.setTextColor(Color.RED);
+                        setDinero(getDinero() + precioCurar);
+                        labelCurar.setTextColor(Color.GREEN);
+                        cambios[1] = (int) cambios[1] - 1;
+                        labelCurar.setText(String.valueOf(precioCurar) + "$ - " + String.valueOf(cambios[1]) + "/10");
+                        labelDinero.setText(String.valueOf(getDinero()));
+                        if (info[1] == cambios[1]) {
+                            labelCurar.setTextColor(Color.WHITE);
+                            if ((int) cambios[4] == getDinero()) {
+                                labelDinero.setTextColor(Color.WHITE);
+                            }
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "No puedes quitar mas", Toast.LENGTH_SHORT).show();
+                    }
 
+                }
             }
         });
 
@@ -148,8 +221,16 @@ public class FragmentTienda extends Fragment {
         btnDañoMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                labelDinero.setTextColor(Color.RED);
+                if (dinero >= precioDaño && (int) cambios[2] != 5) {
+                    labelDinero.setTextColor(Color.RED);
+                    setDinero(getDinero() - precioDaño);
+                    labelDaño.setTextColor(Color.GREEN);
+                    cambios[2] = (int) cambios[2] + 1;
+                    labelDaño.setText(String.valueOf(precioDaño) + "$ - " + String.valueOf(cambios[2]) + "/5");
+                    labelDinero.setText(String.valueOf(getDinero()));
+                } else {
+                    Toast.makeText(getContext(), "No tienes pasta", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -157,12 +238,36 @@ public class FragmentTienda extends Fragment {
         btnDañoMenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
+                if (info != null) {
+                    if (info[2] != cambios[2]) {
+                        labelDinero.setTextColor(Color.RED);
+                        setDinero(getDinero() + precioDaño);
+                        labelDaño.setTextColor(Color.GREEN);
+                        cambios[2] = (int) cambios[2] - 1;
+                        labelDaño.setText(String.valueOf(precioDaño) + "$ - " + String.valueOf(cambios[2]) + "/5");
+                        labelDinero.setText(String.valueOf(getDinero()));
+                        if (info[2] == cambios[2]) {
+                            labelDaño.setTextColor(Color.WHITE);
+                            if ((int) cambios[4] == getDinero()) {
+                                labelDinero.setTextColor(Color.WHITE);
+                            }
+                        }
+                    } else {
+                        Toast.makeText(getContext(), "No puedes quitar mas", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
         return view;
     }
 
+
+    public int getDinero() {
+        return dinero;
+    }
+
+    public void setDinero(int dinero) {
+        this.dinero = dinero;
+    }
 }

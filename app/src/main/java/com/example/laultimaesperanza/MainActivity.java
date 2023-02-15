@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
             vida = 10;
             daño = 1;
             ronda = 1;
+            dinero=0;
+            puntos=0;
 
         } else {
             velocidad = (float) info[0];
@@ -123,5 +125,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }

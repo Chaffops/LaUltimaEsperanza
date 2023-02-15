@@ -52,7 +52,6 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     public Juego(Context context, PantallaJuego pt, int ronda, int daño, float velocidad, int vida, int dinero, int puntos) {
         super(context);
         this.pt = pt;
-
         Juego.ronda = ronda;
 
         this.dinero = dinero;
@@ -84,7 +83,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         tiempo = new Thread(() -> {
             try {
-                for (int x = 0; x < 90; x++) {
+                for (int x = 0; x < 10; x++) {
 
                     Thread.sleep(1000);
                     hacerPuntos();
@@ -178,7 +177,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
 
 
-        if (Jugador.getPuntosVida() <= 0) {
+        if (Jugador.getPuntosVida() <= 0 && tiempo.isAlive()) {
 //aqui va el codigo para cuando pierdes.
             tiempo.interrupt();
             pt.irGameOver(ronda, jugador.getDaño(), velocidad, Jugador.getPuntosVida(), dinero, puntos);
@@ -220,6 +219,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
             if (Entidad.hayColision(zombi, jugador)) {
 
                 itZombi.remove();
+                pt.sonidoDaño();
                 jugador.setPuntosVida(jugador.getPuntosVida() - 1);
                 continue;
             }

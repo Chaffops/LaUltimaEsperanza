@@ -60,11 +60,14 @@ public class GameOver extends AppCompatActivity {
         if (surv.getText().equals("Muerto")) {
             control.gameOver();
         } else {
-            control.insertarInfoJuego(recibido.getFloat("velocidad"), recibido.getInt("vida"), recibido.getInt("daño"), recibido.getInt("ronda"), recibido.getInt("dinero"), recibido.getInt("puntuacion"));
+            control.insertarInfoJuego(recibido.getFloat("velocidad"), recibido.getInt("vida"), recibido.getInt("daño"), recibido.getInt("ronda"), recibido.getInt("dinero"), recibido.getInt("puntos"));
         }
         Intent iPrici = new Intent(this, MainActivity.class);
         startActivity(iPrici);
 
     }
-
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 }
