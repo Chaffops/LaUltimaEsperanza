@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -47,13 +49,17 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     float velocidad;
     int dinero, puntos, vida;
 
+    int tiempoPartida;
+
     Thread tiempo;
+
+    int tiemposs = 90;
 
     public Juego(Context context, PantallaJuego pt, int ronda, int daño, float velocidad, int vida, int dinero, int puntos) {
         super(context);
         this.pt = pt;
         Juego.ronda = ronda;
-
+        tiempoPartida = 90;
         this.dinero = dinero;
         this.puntos = puntos;
         this.velocidad = velocidad;
@@ -81,10 +87,11 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         setFocusable(true);
 
+
         tiempo = new Thread(() -> {
             try {
-                for (int x = 0; x < 10; x++) {
-
+                for (int x = 0; x < tiempoPartida; x++) {
+                    tiemposs--;
                     Thread.sleep(1000);
                     hacerPuntos();
                 }
@@ -96,6 +103,14 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
         });
         tiempo.start();
     }
+
+    public void dibujarTiempo(Canvas canvas) {
+        Paint tiempito = new Paint();
+        tiempito.setColor(Color.GRAY);
+        tiempito.setTextSize(100);
+        canvas.drawText(String.valueOf(tiemposs), 50, 150, tiempito);
+    }
+
 
     public void hacerPuntos() {
         puntos++;
@@ -162,7 +177,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         mapa.dibujar(canvas, disposicion);
-
+        dibujarTiempo(canvas);
         joystick.dibujar(canvas);
         jugador.dibujar(canvas, disposicion);
         for (Zombi zombi : Zombis) {
@@ -179,9 +194,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         if (Jugador.getPuntosVida() <= 0 && tiempo.isAlive()) {
 //aqui va el codigo para cuando pierdes.
-            tiempo.interrupt();
-            pt.irGameOver(ronda, jugador.getDaño(), velocidad, Jugador.getPuntosVida(), dinero, puntos);
-
+            tiempoPartida=0;
             return;
         }
 
