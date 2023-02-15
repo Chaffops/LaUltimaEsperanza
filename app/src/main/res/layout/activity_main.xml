@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_action_settings"
+        app:srcCompat="@drawable/btnajustespresionado"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck,ImageContrastCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,7 +59,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/botonPrincipal"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_action_shopping_basket"
+            app:srcCompat="@drawable/btntiendapresionado"
             tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
         <ImageButton
@@ -73,7 +73,7 @@
             app:layout_constraintEnd_toStartOf="@+id/botonPrincipal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_action_format_list_numbered"
+            app:srcCompat="@drawable/btnlistapresionado"
             tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
         <ImageButton
@@ -87,7 +87,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_action_play_circle_outline"
+            app:srcCompat="@drawable/btnplaypressionado"
             tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
