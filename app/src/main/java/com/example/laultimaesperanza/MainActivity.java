@@ -43,17 +43,19 @@ public class MainActivity extends AppCompatActivity {
             dinero = (int) info[4];
             puntos = (int) info[5];
         }
-        Object[] x=control.recibirAjustes();
-        Locale locale = null;
-        if (((String) x[2]).equals("Español")) {
-            locale = new Locale("es");
-        } else if (((String) x[2]).equals("Ingles")) {
-            locale = new Locale("en");
+        Object[] x = control.recibirAjustes();
+        if (x != null) {
+            Locale locale = null;
+            if (((String) x[2]).equals("Español")) {
+                locale = new Locale("es");
+            } else if (((String) x[2]).equals("Ingles")) {
+                locale = new Locale("en");
+            }
+            Resources resources = this.getResources();
+            Configuration configuration = resources.getConfiguration();
+            configuration.setLocale(locale);
+            resources.updateConfiguration(configuration, resources.getDisplayMetrics());
         }
-        Resources resources = this.getResources();
-        Configuration configuration = resources.getConfiguration();
-        configuration.setLocale(locale);
-        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
     public void empezarJuego(View vista) {

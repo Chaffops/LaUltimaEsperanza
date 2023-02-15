@@ -29,4 +29,8 @@
     <string name="toastNohayCambios">No changes done</string>
     <string name="toastPasta">No money</string>
     <string name="toastQuitarTienda">can`t delete</string>
+    <string name="labelMuerte">Died</string>
+    <string name="labelSobrevivido">Survived</string>
+    <string name="labelVolver">Back</string>
+    <string name="labelGuardarS">Save score</string>
 </resources>

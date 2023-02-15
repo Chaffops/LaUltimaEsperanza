@@ -40,11 +40,11 @@ public class GameOver extends AppCompatActivity {
         bntVolverGuardar = findViewById(R.id.btnVolverOGuardar);
 
         if (recibido.getInt("vida") == 0) {
-            surv.setText("Muerto");
-            bntVolverGuardar.setText("Guardar Score");
+            surv.setText(R.string.labelMuerte);
+            bntVolverGuardar.setText(R.string.labelGuardarS);
         } else {
-            surv.setText("Sobrevivido");
-            bntVolverGuardar.setText("Volver");
+            surv.setText(R.string.labelSobrevivido);
+            bntVolverGuardar.setText(R.string.labelVolver);
         }
 
         puntos.setText(String.valueOf(recibido.getInt("puntos")));

@@ -40,6 +40,10 @@
     <string name="toastNohayCambios">No has hecho cambios</string>
     <string name="toastPasta">No tienes pasta</string>
     <string name="toastQuitarTienda">No puedes quitar</string>
+    <string name="labelMuerte">Muerto</string>
+    <string name="labelSobrevivido">Sobrevivido</string>
+    <string name="labelVolver">Volver</string>
+    <string name="labelGuardarS">Guardar marcador</string>
 
 
 </resources>

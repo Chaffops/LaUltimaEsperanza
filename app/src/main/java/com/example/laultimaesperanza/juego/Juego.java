@@ -107,7 +107,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
     public void dibujarTiempo(Canvas canvas) {
         Paint tiempito = new Paint();
         tiempito.setTextSize(100);
-        if (tiemposs <= 10) {
+        if (tiemposs <= tiempoPartida) {
             tiempito.setColor(Color.RED);
         } else {
             tiempito.setColor(Color.GRAY);

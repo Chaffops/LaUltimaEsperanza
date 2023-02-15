@@ -97,31 +97,35 @@ public class FragmentTienda extends Fragment {
         btnComprar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (info[0] != cambios[0] || info[1] != cambios[1] || info[2] != cambios[2] || info[3] != cambios[3] || info[4] != cambios[4] || info[5] != cambios[5]) {
-                    AlertDialog.Builder dialogo = new AlertDialog.Builder(getActivity());
-                    dialogo.setMessage("Confirnmar la compra de " + ((int) info[4] - getDinero()) + "$")
-                            .setCancelable(false)
-                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    control.insertarInfoJuego((Float) cambios[0], (Integer) cambios[1], (Integer) cambios[2], (Integer) cambios[3], getDinero(), (Integer) cambios[5]);
-                                    FragmentManager fManager = getActivity().getSupportFragmentManager();
-                                    fManager.beginTransaction()
-                                            .replace(R.id.ContenedorFragments, FragmentTienda.class, null)
-                                            .setReorderingAllowed(true)
-                                            .addToBackStack("")
-                                            .commit();
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                if (info != null) {
+                    if (info[0] != cambios[0] || info[1] != cambios[1] || info[2] != cambios[2] || info[3] != cambios[3] || info[4] != cambios[4] || info[5] != cambios[5]) {
+                        AlertDialog.Builder dialogo = new AlertDialog.Builder(getActivity());
+                        dialogo.setMessage("Confirnmar la compra de " + ((int) info[4] - getDinero()) + "$")
+                                .setCancelable(false)
+                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        control.insertarInfoJuego((Float) cambios[0], (Integer) cambios[1], (Integer) cambios[2], (Integer) cambios[3], getDinero(), (Integer) cambios[5]);
+                                        FragmentManager fManager = getActivity().getSupportFragmentManager();
+                                        fManager.beginTransaction()
+                                                .replace(R.id.ContenedorFragments, FragmentTienda.class, null)
+                                                .setReorderingAllowed(true)
+                                                .addToBackStack("")
+                                                .commit();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                }
-                            });
-                    AlertDialog seguro = dialogo.create();
-                    seguro.setTitle("Confirmacion");
-                    seguro.show();
+                                    }
+                                });
+                        AlertDialog seguro = dialogo.create();
+                        seguro.setTitle("Confirmacion");
+                        seguro.show();
+                    } else {
+                        Toast.makeText(getContext(), R.string.toastNohayCambios, Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(getContext(), R.string.toastNohayCambios, Toast.LENGTH_SHORT).show();
                 }
