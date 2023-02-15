@@ -106,8 +106,13 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
     public void dibujarTiempo(Canvas canvas) {
         Paint tiempito = new Paint();
-        tiempito.setColor(Color.GRAY);
         tiempito.setTextSize(100);
+        if (tiemposs <= 10) {
+            tiempito.setColor(Color.RED);
+        } else {
+            tiempito.setColor(Color.GRAY);
+        }
+
         canvas.drawText(String.valueOf(tiemposs), 50, 150, tiempito);
     }
 
@@ -194,7 +199,7 @@ public class Juego extends SurfaceView implements SurfaceHolder.Callback {
 
         if (Jugador.getPuntosVida() <= 0 && tiempo.isAlive()) {
 //aqui va el codigo para cuando pierdes.
-            tiempoPartida=0;
+            tiempoPartida = 0;
             return;
         }
 
