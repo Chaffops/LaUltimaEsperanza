@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,6 +16,8 @@ import com.example.laultimaesperanza.dialogos.DialogoFragment;
 import com.example.laultimaesperanza.pantallasYvistas.FragmentPrincipal;
 import com.example.laultimaesperanza.pantallasYvistas.FragmentScore;
 import com.example.laultimaesperanza.pantallasYvistas.FragmentTienda;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +43,17 @@ public class MainActivity extends AppCompatActivity {
             dinero = (int) info[4];
             puntos = (int) info[5];
         }
+        Object[] x=control.recibirAjustes();
+        Locale locale = null;
+        if (((String) x[2]).equals("Español")) {
+            locale = new Locale("es");
+        } else if (((String) x[2]).equals("Ingles")) {
+            locale = new Locale("en");
+        }
+        Resources resources = this.getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 
     public void empezarJuego(View vista) {
@@ -50,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
             vida = 10;
             daño = 1;
             ronda = 1;
-            dinero=0;
-            puntos=0;
+            dinero = 0;
+            puntos = 0;
 
         } else {
             velocidad = (float) info[0];
@@ -114,14 +129,31 @@ public class MainActivity extends AppCompatActivity {
     public void guardar(View view) {
 
         Object[] x = dialogo.getInfo();
+        Object[] y = control.recibirAjustes();
 
         if (x != null) {
             control.insertarAjustes((String) x[0], (int) x[1], (String) x[2]);
 
+            if (!x[2].equals(y[2])) {
+                Locale locale = null;
+                if (((String) x[2]).equals("Español")) {
+                    locale = new Locale("es");
+                } else if (((String) x[2]).equals("Ingles")) {
+                    locale = new Locale("en");
+                }
 
-            Toast.makeText(MainActivity.this, "Ajustes guardados", Toast.LENGTH_LONG).show();
+                Resources resources = this.getResources();
+                Configuration configuration = resources.getConfiguration();
+                configuration.setLocale(locale);
+                resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+            Toast.makeText(MainActivity.this, R.string.toastGuardarAjustes, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(MainActivity.this, "Tiene que introducir un nombre para guardar los ajustes", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, R.string.toastNeedNombre, Toast.LENGTH_LONG).show();
         }
     }
 

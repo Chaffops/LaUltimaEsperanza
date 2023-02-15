@@ -123,7 +123,7 @@ public class FragmentTienda extends Fragment {
                     seguro.setTitle("Confirmacion");
                     seguro.show();
                 } else {
-                    Toast.makeText(getContext(), "No has hecho cambios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.toastNohayCambios, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -143,7 +143,7 @@ public class FragmentTienda extends Fragment {
                     labelVelocidad.setText(String.valueOf(precioCorrer) + "$ - " + numVelM + "/5");
                     labelDinero.setText(String.valueOf(getDinero()));
                 } else {
-                    Toast.makeText(getContext(), "No tienes pasta", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.toastPasta, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -168,7 +168,7 @@ public class FragmentTienda extends Fragment {
                             }
                         }
                     } else {
-                        Toast.makeText(getContext(), "No puedes quitar mas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.toastQuitarTienda, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -187,7 +187,7 @@ public class FragmentTienda extends Fragment {
                     labelCurar.setText(String.valueOf(precioCurar) + "$ - " + String.valueOf(cambios[1]) + "/10");
                     labelDinero.setText(String.valueOf(getDinero()));
                 } else {
-                    Toast.makeText(getContext(), "No tienes pasta", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.toastPasta, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -210,7 +210,7 @@ public class FragmentTienda extends Fragment {
                             }
                         }
                     } else {
-                        Toast.makeText(getContext(), "No puedes quitar mas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.toastQuitarTienda, Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -229,7 +229,7 @@ public class FragmentTienda extends Fragment {
                     labelDaño.setText(String.valueOf(precioDaño) + "$ - " + String.valueOf(cambios[2]) + "/5");
                     labelDinero.setText(String.valueOf(getDinero()));
                 } else {
-                    Toast.makeText(getContext(), "No tienes pasta", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.toastPasta, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -253,7 +253,7 @@ public class FragmentTienda extends Fragment {
                             }
                         }
                     } else {
-                        Toast.makeText(getContext(), "No puedes quitar mas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.toastQuitarTienda, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

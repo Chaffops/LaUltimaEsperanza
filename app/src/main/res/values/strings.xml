@@ -2,7 +2,7 @@
     <string name="app_name">The Last Chance</string>
 
     <string name="botonEmpezar">Jugar</string>
-    <string name="botonScoreBoard">Score board</string>
+    <string name="botonScoreBoard">Lista de puntuacion</string>
     <string name="botonTienda">Tienda</string>
     <string name="botonComprar">Comprar</string>
 
@@ -34,8 +34,12 @@
     <string name="descriptorBotonAjustes">Volver a la pantalla de inicio</string>
 
     <string name="descriptorBotonEmpezar">Empezar Juego</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="labelMarcador">Marcador</string>
+    <string name="toastGuardarAjustes">Ajustes guardados</string>
+    <string name="toastNeedNombre">Se requiere nombre para guardar</string>
+    <string name="toastNohayCambios">No has hecho cambios</string>
+    <string name="toastPasta">No tienes pasta</string>
+    <string name="toastQuitarTienda">No puedes quitar</string>
 
 
 </resources>

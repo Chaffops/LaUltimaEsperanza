@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The Last Chance</string>
+    <string name="botonEmpezar">Play</string>
+    <string name="botonScoreBoard">Score board</string>
+    <string name="botonTienda">Shop</string>
+    <string name="botonComprar">Buy</string>
+    <string name="botonGuardar">Save</string>
+    <string name="labelAjustes">Settings</string>
+    <string name="labelGameOver">Game Over</string>
+    <string name="labelHas">You</string>
+    <string name="labelPuntos">Points</string>
+    <string name="labelDineros">Money</string>
+    <string name="labelRonda">Round</string>
+    <string name="labelNombre">Name</string>
+    <string name="labelVolumen">Volume</string>
+    <string name="labelIdioma">language</string>
+    <string name="labelTema">Theme</string>
+    <string name="textoTema">Dark</string>
+    <string name="textoTemaClaro">White</string>
+    <string name="labelFacil">Easy</string>
+    <string name="labelNormal">medium</string>
+    <string name="labelDificil">Hard</string>
+    <string name="descriptorBotonAjustes">Go back to home screen</string>
+    <string name="descriptorBotonEmpezar">Start game</string>
+    <string name="labelMarcador">Score board</string>
+    <string name="toastGuardarAjustes">Settings saved</string>
+    <string name="toastNeedNombre">Need name to save</string>
+    <string name="toastNohayCambios">No changes done</string>
+    <string name="toastPasta">No money</string>
+    <string name="toastQuitarTienda">can`t delete</string>
+</resources>
